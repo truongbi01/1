@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="white_dark">#E0DFDF</color>
+    <color name="orange_fresh">#FF8A00</color>
+    <color name="orange_dark">#FF4703</color>
+
+
+    <color name="gray_street">#928E8E</color>
+    <color name="gray_light">#DBD6D6</color>
+    <color name="gray_white">#F3F3F3</color>
+
+    <color name="dot_active">#FFFFFF</color> <!-- Màu chấm tròn khi hoạt động -->
+    <color name="dot_inactive">#80FFFFFF</color> <!-- Màu chấm tròn khi không hoạt động -->
+</resources>

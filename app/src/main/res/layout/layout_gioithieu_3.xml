@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/orange_fresh"
+    tools:ignore="NotSibling">
+
+    <ImageView
+        android:scaleType="fitXY"
+        android:layout_width="@dimen/img_width_430_2"
+        android:layout_height="@dimen/img_height_430_2"
+        android:src="@drawable/gioithieu3"
+        android:contentDescription="TODO" />
+
+    <TextView
+
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+
+        android:drawableTop="@drawable/icon_thunder"
+        android:drawablePadding="8dp"
+        android:fontFamily="@font/inter_light"
+        android:gravity="center"
+        android:text="@string/name_app"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/title_size_48"
+        android:textStyle="bold"
+        tools:ignore="SpUsage" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
+
+
+        <!-- Button 1 -->
+        <LinearLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="58dp"
+            android:layout_marginTop="200dp"
+
+            android:background="@drawable/button_background_2"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="Giao diện dễ dàng sử dụng"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/button_size_18" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="530dp">
+        <TextView
+            android:id="@+id/text"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:fontFamily="@font/inter_regular"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Dễ dàng sử dụng đặt giao vẫn chuyển &amp;nhận các phiếu giảm giá giao hàng đơn giản "/>
+    </LinearLayout>
+
+</RelativeLayout>

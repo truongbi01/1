@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Lalamove</string>
+
+    <string name="name_app">LalaGo</string>
+
+    <!-- Các chuỗi khác của bạn -->
+    <string name="start">Start</string>
+    <string name="next">Next</string>
+</resources>

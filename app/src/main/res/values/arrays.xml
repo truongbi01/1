@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="array_dot_active">
+        <item>@color/dot_active</item>
+    </integer-array>
+    <integer-array name="array_dot_inactive">
+        <item>@color/dot_inactive</item>
+    </integer-array>
+</resources>
