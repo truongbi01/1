@@ -17,12 +17,23 @@
             android:exported="false">
 
         </activity>
-        <activity android:name=".GioiThieu" android:exported="true">
+        <activity android:name=".GioiThieu" android:exported="false">
+
+        </activity>
+        <activity android:name=".LoginActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".RegisterActivity">
+
+
+        </activity>
+        <activity android:name=".ForgotPasswordActivity">
+
+
         </activity>
     </application>
 
