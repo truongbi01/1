@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         CreateDatabase createDatabase = new CreateDatabase(this);
+        createDatabase.getWritableDatabase();
         createDatabase.close();
     }
 }
