@@ -1,17 +1,18 @@
-package com.example.lalamove;
+package com.example.lalamove.View.Login;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.content.Intent;
+import androidx.appcompat.app.AppCompatActivity;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.example.lalamove.R;
 
-public class RegisterActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     private EditText passwordEditText;
     private ImageView showPasswordImageView;
@@ -20,42 +21,42 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_dangky);
-
+        setContentView(R.layout.layout_dangnhap);
+        TextView signUpTextView = findViewById(R.id.sign_up);
         passwordEditText = findViewById(R.id.password);
         showPasswordImageView = findViewById(R.id.show_password);
-        ImageView backButton = findViewById(R.id.back_button);
-        TextView HaveAccount= findViewById(R.id.already_have_account);
+        TextView QuenMatKhau= findViewById(R.id.forgot_password);
         showPasswordImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isPasswordVisible) {
                     // Hide password
                     passwordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                    showPasswordImageView.setImageResource(R.drawable.ic_show); // Change to eye icon
+                    showPasswordImageView.setImageResource(R.drawable.ic_hide); // Change to eye icon
                 } else {
                     // Show password
                     passwordEditText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    showPasswordImageView.setImageResource(R.drawable.ic_hide); // Change to eye closed icon
+                    showPasswordImageView.setImageResource(R.drawable.ic_show); // Change to eye closed icon
                 }
                 isPasswordVisible = !isPasswordVisible;
                 // Move the cursor to the end of the text
                 passwordEditText.setSelection(passwordEditText.getText().length());
             }
         });
-            backButton.setOnClickListener(new View.OnClickListener() {
+        signUpTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
             }
         });
-        HaveAccount.setOnClickListener(new View.OnClickListener() {
+        QuenMatKhau.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
                 startActivity(intent);
             }
         });
     }
+
 }

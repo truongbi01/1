@@ -1,7 +1,6 @@
-package com.example.lalamove;
+package com.example.lalamove.View.Login;
 import android.content.Intent;
 import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -11,6 +10,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.lalamove.R;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
     private EditText etPhoneNumber, etNewPassword;
