@@ -7,6 +7,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+import com.google.android.material.tabs.TabLayout;
+
+import Fragment.FragmentDaHoanThanh;
+import Fragment.FragmentDaHuy;
+import Fragment.FragmentDangTai;
+import Fragment.ViewPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,5 +31,8 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
     }
+
+
 }
