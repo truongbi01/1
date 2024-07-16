@@ -60,15 +60,18 @@
             android:clickable="true"
             android:focusable="true" />
     </LinearLayout>
+
     <Button
         android:id="@+id/login_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Đăng nhập"
-        android:backgroundTint="@color/orange_fresh"
-        android:textColor="@android:color/white"
         android:layout_below="@id/password_input"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+
+        android:backgroundTint="@color/orange_fresh"
+        android:text="Đăng nhập"
+        android:textColor="@android:color/white" />
+
     <LinearLayout
         android:id="@+id/social_login_options"
         android:layout_width="match_parent"
