@@ -25,7 +25,7 @@
 
 
         <EditText
-            android:id="@+id/phone_number"
+            android:id="@+id/edt_sodienthoai_dangNhap"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -44,11 +44,11 @@
         android:padding="8dp">
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/edt_matkhau_dangnhap"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="0123456789"
+            android:hint="Password"
             android:inputType="textPassword" />
 
         <ImageView
@@ -62,7 +62,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/login_button"
+        android:id="@+id/btn_dangnhap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/password_input"
@@ -78,7 +78,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_below="@id/login_button"
+        android:layout_below="@id/btn_dangnhap"
         android:layout_marginTop="16dp">
 
 

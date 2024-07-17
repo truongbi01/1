@@ -13,8 +13,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -36,7 +34,7 @@ public class FragmentLoaiXe extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_trangchu);
+        setContentView(R.layout.layout_trangchu_khachhang);
 
         // Ánh xạ các view
         drawerLayout = findViewById(R.id.drawer_layout);

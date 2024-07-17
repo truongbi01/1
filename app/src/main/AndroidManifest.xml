@@ -14,13 +14,17 @@
         android:theme="@style/Theme.Lalamove"
         tools:targetApi="31">
 
-        <activity android:name=".View.GioiThieu" android:exported="false">
+        <activity android:name=".View.BatDau.GioiThieu" android:exported="false">
 
         </activity>
         <activity android:name=".View.Login.LoginActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".View.Login.RegisterActivity">
+        <activity android:name=".View.Home.KhachHang.DangKyKhachHangActivity">
 
 
         </activity>
@@ -28,11 +32,6 @@
 
 
         </activity>
-        <activity android:name=".View.textData" android:exported="false">
-
-        </activity>
-
-
         <activity android:name=".DonHangActivity" android:exported="false">
 
         </activity>
@@ -41,21 +40,22 @@
 
 
         </activity>
-        <activity android:name="ListLoaiXe.FragmentLoaiXe" android:exported="true">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-
+        <activity android:name="ListLoaiXe.FragmentLoaiXe" android:exported="false">
 
         </activity>
         <activity android:name="ListLoaiXe.BuocTiepTheoActivity">
         </activity>
-        <activity android:name="ListLoaiXe.MenuThanhToanActivity" android:exported="true">
+        <activity android:name="ListLoaiXe.MenuThanhToanActivity" android:exported="false">
 
+
+        </activity>
+        <activity android:name=".View.Home.KhachHang.Home_khachhang_Activity" android:exported="false">
+
+        </activity>
+        <activity android:name=".View.Home.QuanLy.Home_QuanLy_Activity" android:exported="false">
+
+        </activity>
+        <activity android:name=".View.Home.TaiXe.Home_TaiXe_Activity" android:exported="false">
 
         </activity>
     </application>

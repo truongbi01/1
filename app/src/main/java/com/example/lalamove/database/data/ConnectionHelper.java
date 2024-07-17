@@ -5,14 +5,15 @@ import android.util.Log;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.Objects;
 
 public class ConnectionHelper {
     Connection con;
     String username, password, ip, port, database;
 
     public Connection connectionClass() {
-        ip = "172.31.53.150";
-        database = "CNPM0602_G07";
+        ip = "192.168.1.2";
+        database = "Lalamove";
         username = "sa";
         password = "123456";
         port = "1433";
@@ -27,7 +28,7 @@ public class ConnectionHelper {
             ConnectionURL = "jdbc:jtds:sqlserver://" + ip + ":" + port + ";" + "databasename=" + database + ";user=" + username + ";password=" + password + ";";
             connection = DriverManager.getConnection(ConnectionURL);
         } catch (Exception e) {
-            Log.e("ERROR", e.getMessage());
+            Log.e("ERROR", Objects.requireNonNull(e.getMessage()));
         }
         return connection;
     }
