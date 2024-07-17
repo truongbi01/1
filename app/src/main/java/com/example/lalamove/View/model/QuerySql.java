@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
-import com.example.lalamove.View.Home.KhachHang.Home_khachhang_Activity;
+import com.example.lalamove.ListLoaiXe.Home_KhachHang;
 import com.example.lalamove.database.data.ConnectionHelper;
 
 import java.sql.CallableStatement;
@@ -72,7 +72,7 @@ public class QuerySql {
 
                     //Home khachhang
                     if (loaitaikhoan.equals("KhachHang")) {
-                        Intent intent = new Intent(context, Home_khachhang_Activity.class);
+                        Intent intent = new Intent(context, Home_KhachHang.class);
                         context.startActivity(intent);
                     }
 

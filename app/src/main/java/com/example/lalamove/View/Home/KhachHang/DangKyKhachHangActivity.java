@@ -17,7 +17,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.lalamove.R;
-import com.example.lalamove.View.Login.LoginActivity;
+import com.example.lalamove.View.Login.DangNhapActivity;
 import com.example.lalamove.View.model.QuerySql;
 import com.example.lalamove.database.data.ConnectionHelper;
 
@@ -83,7 +83,7 @@ public class DangKyKhachHangActivity extends AppCompatActivity {
                 {
                     try{
                         querySql.sp_insert_TaiKhoan(soDienThoai,ten,matKhau,role,null, DangKyKhachHangActivity.this);
-                        Intent intent = new Intent(DangKyKhachHangActivity.this, LoginActivity.class);
+                        Intent intent = new Intent(DangKyKhachHangActivity.this, DangNhapActivity.class);
                         startActivity(intent);
                     }catch (Exception e)
                     {
@@ -97,7 +97,7 @@ public class DangKyKhachHangActivity extends AppCompatActivity {
         tv_DaCoTaiKhoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DangKyKhachHangActivity.this, LoginActivity.class);
+                Intent intent = new Intent(DangKyKhachHangActivity.this, DangNhapActivity.class);
                 startActivity(intent);
             }
         });

@@ -1,5 +1,6 @@
 package com.example.lalamove.ListLoaiXe;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -20,28 +21,27 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 
 import com.example.lalamove.R;
+import com.example.lalamove.View.Login.DangNhapActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
-public class FragmentLoaiXe extends AppCompatActivity {
+public class Home_KhachHang extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private EditText diadiemtrakhach;
     private EditText chondiadiem;
     private LinearLayout additionalInterface;
+    private ListView vehicleList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_trangchu_khachhang);
 
-        // Ánh xạ các view
-        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.navigation_view);
-        diadiemtrakhach = findViewById(R.id.diadiemtrakhach);
-        chondiadiem = findViewById(R.id.chondiadiem);
-        ListView vehicleList = findViewById(R.id.vehicle_list);
+        //Anh Xa
+        AnhXa();
+
 
         // Inflate the additional interface layout
         additionalInterface = (LinearLayout) getLayoutInflater().inflate(R.layout.layout_trangchu_menuthanhtoan, null);
@@ -96,6 +96,37 @@ public class FragmentLoaiXe extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem item) {
                 showAdditionalInterface();
                 drawerLayout.closeDrawers();
+                int menuID = item.getItemId();
+                if (menuID == R.id.nav_orders) {
+                    getSupportActionBar().setTitle(item.getTitle());
+
+                    return true;
+
+                } else if (menuID == R.id.nav_recharge) {
+                    getSupportActionBar().setTitle(item.getTitle());
+
+                    return true;
+
+                }else if (menuID == R.id.nav_favorite_drivers) {
+                    getSupportActionBar().setTitle(item.getTitle());
+
+                    return true;
+
+                }else if (menuID == R.id.nav_settings) {
+
+                    return true;
+
+                }
+                else if (menuID == R.id.nav_help_center) {
+
+                    return true;
+
+                }else if (menuID == R.id.nav_logout) {
+                    getSupportActionBar().setTitle(item.getTitle());
+                    ChuyenTrang(Home_KhachHang.this, DangNhapActivity.class);
+                    return true;
+
+                }else
                 return true;
             }
         });
@@ -138,7 +169,7 @@ public class FragmentLoaiXe extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(FragmentLoaiXe.this, BuocTiepTheoActivity.class);
+                Intent intent = new Intent(Home_KhachHang.this, BuocTiepTheoActivity.class);
                 startActivity(intent);
             }
         });
@@ -164,4 +195,17 @@ public class FragmentLoaiXe extends AppCompatActivity {
             mainLayout.removeView(additionalInterface);
         }
     }
+    void AnhXa(){
+        // Ánh xạ các view
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.navigation_view);
+        diadiemtrakhach = findViewById(R.id.diadiemtrakhach);
+        chondiadiem = findViewById(R.id.chondiadiem);
+        vehicleList = findViewById(R.id.vehicle_list);
+    }
+    void ChuyenTrang(Context context, Class lop){
+        Intent i = new Intent(context,lop);
+        startActivity(i);
+    }
+
 }

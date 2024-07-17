@@ -15,7 +15,7 @@ import com.example.lalamove.R;
 import com.example.lalamove.View.Home.KhachHang.DangKyKhachHangActivity;
 import com.example.lalamove.View.model.QuerySql;
 
-public class LoginActivity extends AppCompatActivity {
+public class DangNhapActivity extends AppCompatActivity {
 
     private EditText edt_matkhau,edt_sodienthoai_dangnhap;
     private ImageView showPasswordImageView;
@@ -38,8 +38,15 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String soDienThoai = edt_sodienthoai_dangnhap.getText().toString();
                 String matkhau = edt_matkhau.getText().toString();
-                querySql = new QuerySql();
-                querySql.sp_search_taikhoan(soDienThoai,matkhau,LoginActivity.this);
+                if(!isDinhDangSoDienThoai(soDienThoai)){
+                    edt_sodienthoai_dangnhap.setError("Số điện thoại phải 10 số");
+                }
+                else
+                {
+                    querySql = new QuerySql();
+                    querySql.sp_search_taikhoan(soDienThoai,matkhau, DangNhapActivity.this);
+                }
+
             }
         });
 
@@ -63,14 +70,14 @@ public class LoginActivity extends AppCompatActivity {
         tv_DangKy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, DangKyKhachHangActivity.class);
+                Intent intent = new Intent(DangNhapActivity.this, DangKyKhachHangActivity.class);
                 startActivity(intent);
             }
         });
         tv_QuenMatKhau.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
+                Intent intent = new Intent(DangNhapActivity.this, ForgotPasswordActivity.class);
                 startActivity(intent);
             }
         });
@@ -82,6 +89,11 @@ public class LoginActivity extends AppCompatActivity {
         showPasswordImageView = findViewById(R.id.show_password);
         tv_QuenMatKhau= findViewById(R.id.forgot_password);
         btn_DangNhap = findViewById(R.id.btn_dangnhap);
+    }
+    public boolean isDinhDangSoDienThoai(String phoneNumber) {
+        // Số điện thoại phải có 10 chữ số
+        String regex = "^[0-9]{10}$";
+        return phoneNumber.matches(regex);
     }
 
 }
