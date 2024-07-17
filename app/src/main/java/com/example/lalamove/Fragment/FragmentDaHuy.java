@@ -1,4 +1,4 @@
-package Fragment;
+package com.example.lalamove.Fragment;
 
 import android.os.Bundle;
 

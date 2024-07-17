@@ -6,10 +6,10 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 
-import Fragment.FragmentDaHoanThanh;
-import Fragment.FragmentDaHuy;
-import Fragment.FragmentDangTai;
-import Fragment.ViewPagerAdapter;
+import com.example.lalamove.Fragment.FragmentDaHoanThanh;
+import com.example.lalamove.Fragment.FragmentDaHuy;
+import com.example.lalamove.Fragment.FragmentDangTai;
+import com.example.lalamove.Fragment.ViewPagerAdapter;
 
 public class DonHangActivity extends AppCompatActivity {
     @Override

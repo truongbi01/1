@@ -1,4 +1,4 @@
-package ListLoaiXe;
+package com.example.lalamove.ListLoaiXe;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,7 +19,7 @@ public class MenuThanhToanActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MenuThanhToanActivity.this, ListLoaiXe.BuocTiepTheoActivity.class);
+                Intent intent = new Intent(MenuThanhToanActivity.this, BuocTiepTheoActivity.class);
                 startActivity(intent);
             }
         });

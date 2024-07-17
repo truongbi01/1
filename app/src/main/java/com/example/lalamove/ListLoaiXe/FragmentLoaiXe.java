@@ -1,4 +1,4 @@
-package ListLoaiXe;
+package com.example.lalamove.ListLoaiXe;
 
 import android.content.Intent;
 import android.os.Bundle;

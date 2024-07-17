@@ -1,4 +1,4 @@
-package ListLoaiXe;
+package com.example.lalamove.ListLoaiXe;
 
 import android.content.Context;
 import android.view.LayoutInflater;

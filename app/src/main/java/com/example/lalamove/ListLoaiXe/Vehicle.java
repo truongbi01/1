@@ -1,4 +1,4 @@
-package ListLoaiXe;
+package com.example.lalamove.ListLoaiXe;
 
 public class Vehicle {
     private int icon;
