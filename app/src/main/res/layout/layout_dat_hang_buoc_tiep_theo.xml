@@ -67,11 +67,12 @@
 
         <EditText
             android:id="@+id/note_text"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Ghi chú cho tài xế"
             android:layout_toEndOf="@id/note_icon"
             android:layout_marginStart="16dp"
+
             android:layout_centerVertical="true" />
 
         <ImageView
@@ -100,7 +101,7 @@
 
         <EditText
             android:id="@+id/phone_text"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nhập sđt của bạn"
             android:layout_toEndOf="@id/phone_icon"
