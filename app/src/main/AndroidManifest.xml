@@ -14,6 +14,7 @@
         android:theme="@style/Theme.Lalamove"
         tools:targetApi="31">
 
+
         <activity android:name=".View.BatDau.GioiThieu" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,17 +25,25 @@
         <activity android:name=".View.Login.DangNhapActivity" android:exported="false">
 
         </activity>
+
+        <activity android:name=".View.Home.TaiXe.DonHangActivity" android:exported="false">
+
+        </activity>
+        <activity android:name=".LoginActivity" android:exported="false">
+
+
+        </activity>
+
         <activity android:name=".View.Home.KhachHang.DangKyKhachHangActivity">
 
 
         </activity>
+
         <activity android:name=".View.Login.ForgotPasswordActivity">
 
 
         </activity>
-        <activity android:name=".DonHangActivity" android:exported="false">
 
-        </activity>
 
         <activity android:name=".ListLoaiXe.Home_KhachHang" android:exported="false">
 
@@ -48,16 +57,23 @@
         <activity android:name=".View.Home.KhachHang.Home_khachhang_Activity" android:exported="false">
 
         </activity>
-        <activity android:name=".View.Home.QuanLy.Home_QuanLy_Activity" android:exported="false">
+        <activity android:name=".View.Home.NhanVienCongTy.Home_QuanLy_Activity" android:exported="false">
 
         </activity>
-        <activity android:name=".View.Home.TaiXe.Home_TaiXe_Activity" android:exported="false">
+        <activity android:name=".View.Home.TaiXe.TrangChuTaiXeActivity" android:exported="false">
 
         </activity>
         <activity android:name=".View.Home.TaiXe.DangKyTaiXeActivity" android:exported="false">
 
         </activity>
 
+
+        <activity android:name=".View.Home.NhanVienCongTy.TrangChuNhanVienActivity">
+
+        </activity>
+        <activity android:name=".View.Home.NhanVienCongTy.TrangChuQuanLiNhanSuActivity">
+
+        </activity>
 
     </application>
 

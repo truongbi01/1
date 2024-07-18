@@ -1,25 +1,27 @@
-package com.example.lalamove.View.model;
+package com.example.lalamove.View.model.TableKhachHang;
 
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
 import com.example.lalamove.ListLoaiXe.Home_KhachHang;
+import com.example.lalamove.View.Home.NhanVienCongTy.TrangChuQuanLiNhanSuActivity;
+import com.example.lalamove.View.Home.TaiXe.TrangChuTaiXeActivity;
 import com.example.lalamove.database.data.ConnectionHelper;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 
-public class QuerySql {
+public  class QuerySql {
     Connection con;
     ConnectionHelper connectionHelper ;
 
     //Them Thong Tin Tai Khoan
-    public void sp_insert_TaiKhoan(String sodienthoai, String ten, String matkhau, String loaitaikhoan, String hinhdaidien,Context context) {
+    public void sp_insert_TaiKhoan(String sodienthoai, String ten, String matkhau, String loaitaikhoan, String hinhdaidien, Context context) {
         try {
-             connectionHelper = new ConnectionHelper();
-             con = connectionHelper.connectionClass();
+            connectionHelper = new ConnectionHelper();
+            con = connectionHelper.connectionClass();
             if (con != null) {
                 String sql = "{call sp_insert_TaiKhoan(?, ?, ?, ?, ?)}";
                 CallableStatement callableStatement = con.prepareCall(sql);
@@ -75,6 +77,14 @@ public class QuerySql {
                         Intent intent = new Intent(context, Home_KhachHang.class);
                         context.startActivity(intent);
                     }
+                    if (loaitaikhoan.equals("TaiXe")){
+                        Intent intent = new Intent(context, TrangChuTaiXeActivity.class);
+                        context.startActivity(intent);
+                    }
+                    if(loaitaikhoan.equals("NhanVienCongTy")){
+                        Intent intent = new Intent(context, TrangChuQuanLiNhanSuActivity.class);
+                        context.startActivity(intent);
+                    }
 
 
                 } else {
@@ -96,4 +106,6 @@ public class QuerySql {
     }
 
 
+
 }
+
