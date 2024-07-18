@@ -13,13 +13,14 @@ import android.widget.TextView;
 
 import com.example.lalamove.R;
 import com.example.lalamove.View.Home.KhachHang.DangKyKhachHangActivity;
+import com.example.lalamove.View.Home.TaiXe.DangKyTaiXeActivity;
 import com.example.lalamove.View.model.QuerySql;
 
 public class DangNhapActivity extends AppCompatActivity {
 
     private EditText edt_matkhau,edt_sodienthoai_dangnhap;
     private ImageView showPasswordImageView;
-    TextView tv_DangKy , tv_QuenMatKhau;
+    TextView tv_DangKy , tv_QuenMatKhau,tv_dangkylamtaixe;
     private Button btn_DangNhap;
     private boolean isPasswordVisible = false;
     QuerySql  querySql;
@@ -49,7 +50,13 @@ public class DangNhapActivity extends AppCompatActivity {
 
             }
         });
-
+        tv_dangkylamtaixe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DangNhapActivity.this, DangKyTaiXeActivity.class);
+                startActivity(intent);
+            }
+        });
         showPasswordImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,6 +96,7 @@ public class DangNhapActivity extends AppCompatActivity {
         showPasswordImageView = findViewById(R.id.show_password);
         tv_QuenMatKhau= findViewById(R.id.forgot_password);
         btn_DangNhap = findViewById(R.id.btn_dangnhap);
+        tv_dangkylamtaixe = findViewById(R.id.tv_dangkylamtaixe);
     }
     public boolean isDinhDangSoDienThoai(String phoneNumber) {
         // Số điện thoại phải có 10 chữ số

@@ -54,6 +54,9 @@
         <activity android:name=".View.Home.TaiXe.Home_TaiXe_Activity" android:exported="false">
 
         </activity>
+        <activity android:name=".View.Home.TaiXe.DangKyTaiXeActivity" android:exported="false">
+
+        </activity>
 
 
     </application>
