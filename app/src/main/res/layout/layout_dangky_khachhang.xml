@@ -19,7 +19,7 @@
         android:background="@android:color/white"
         android:elevation="4dp"
         android:padding="15dp"
-        android:layout_margin="50dp"
+        android:layout_margin="30dp"
 
         >
         <TextView

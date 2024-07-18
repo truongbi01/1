@@ -30,7 +30,7 @@ public class QuerySql {
                 callableStatement.setString(5, hinhdaidien);
 
                 callableStatement.execute();
-                Toast.makeText(context, "Dữ liệu đã được chèn thành công", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Đăng ký thành công !!", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(context, "Có lỗi xảy ra , thử lại sau", Toast.LENGTH_SHORT).show();
             }
