@@ -37,28 +37,28 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
-            android:orientation="vertical"
             android:gravity="center"
+            android:orientation="vertical"
             android:padding="8dp">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_order" /> <!-- Replace with your icon -->
+                android:src="@drawable/ic_order" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:text="Đơn hàng"
                 android:textColor="@android:color/black"
-                android:textSize="14sp"
-                android:layout_marginTop="8dp" />
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!-- Withdraw Item -->
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_columnWeight="1"
             android:orientation="vertical"
             android:gravity="center"
@@ -67,7 +67,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_recharge" /> <!-- Replace with your icon -->
+                android:src="@drawable/ic_recharge" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -76,6 +76,7 @@
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
                 android:layout_marginTop="8dp" />
+
         </LinearLayout>
 
         <!-- Linked Wallet Item -->
@@ -171,7 +172,7 @@
         </LinearLayout>
     </GridLayout>
     <TextView
-        android:id="@+id/bottom_left_text"
+        android:id="@+id/tv_TaiXe_DangXuat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="italic"

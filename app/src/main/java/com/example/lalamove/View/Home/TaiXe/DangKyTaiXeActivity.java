@@ -30,6 +30,7 @@ public class DangKyTaiXeActivity extends AppCompatActivity {
     private ImageView showPasswordButton;
     private String loaiTaiKhoan = "TaiXe";
     private boolean isPasswordVisible = false;
+    private TextView tv_DaCoTaiKhoan_TaiXe ;
 
     TaiXe taiXe;
     LoaiPhuongTien loaiPhuongTien;
@@ -41,13 +42,21 @@ public class DangKyTaiXeActivity extends AppCompatActivity {
 
         taiXe = new TaiXe();
         loaiPhuongTien = new LoaiPhuongTien();
-        // Initialize views
+
+        //AnhXa
         AnhXa();
 
-        // Load data into spinner
+        //tải dữ liệu phương tiện
         loadPhuongTienData();
 
-        // Toggle password visibility
+        tv_DaCoTaiKhoan_TaiXe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DangKyTaiXeActivity.this, DangNhapActivity.class);
+                startActivity(intent);
+            }
+        });
+
         showPasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,6 +116,7 @@ public class DangKyTaiXeActivity extends AppCompatActivity {
         btn_DangKy_TaiKhoanTaiXe = findViewById(R.id.btn_DangKy_TaiKhoanTaiXe);
         showPasswordButton = findViewById(R.id.show_password);
         edt_Bienso_vanchuyen = findViewById(R.id.edt_Bienso_vanchuyen);
+        tv_DaCoTaiKhoan_TaiXe= findViewById(R.id.tv_DaCoTaiKhoan_TaiXe);
     }
 
     void loadPhuongTienData() {
