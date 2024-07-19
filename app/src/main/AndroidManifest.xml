@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,32 +14,61 @@
         android:theme="@style/Theme.Lalamove"
         tools:targetApi="31">
 
-        <activity android:name=".DonHangActivity" android:exported="true">
+
+        <activity android:name=".View.BatDau.GioiThieu" android:exported="true">
 
         </activity>
-        <activity android:name=".LoginActivity" android:exported="true">
+        <activity android:name=".View.Login.DangNhapActivity" android:exported="false">
+
+        </activity>
+
+        <activity android:name=".View.Home.TaiXe.DonHangActivity" android:exported="false">
+
+        </activity>
+
+
+        <activity android:name=".View.Home.KhachHang.DangKyKhachHangActivity">
 
 
         </activity>
-        <activity android:name="ListLoaiXe.FragmentLoaiXe" android:exported="true">
+
+        <activity android:name=".View.Login.ForgotPasswordActivity">
 
 
         </activity>
-        <activity android:name="ListLoaiXe.BuocTiepTheoActivity">
-        </activity>
-        <activity android:name="ListLoaiXe.MenuThanhToanActivity" android:exported="true">
 
-        </activity>
-        <activity android:name=".DangKyTaiXeActivity" android:exported="true">
+
+        <activity android:name=".View.Home.KhachHang.Home_KhachHang" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TrangChuTaiXeActivity"></activity>
-        <activity android:name=".TrangChuNhanVienActivity"></activity>
-        <activity android:name=".TrangChuQuanLiNhanSuActivity"></activity>
+        <activity android:name=".ListLoaiXe.BuocTiepTheoActivity">
+        </activity>
+        <activity android:name=".ListLoaiXe.MenuThanhToanActivity" android:exported="false">
+
+
+        </activity>
+        <activity android:name=".View.Home.NhanVienCongTy.Home_QuanLy_Activity" android:exported="false">
+
+        </activity>
+        <activity android:name=".View.Home.TaiXe.TrangChuTaiXeActivity" android:exported="false">
+
+        </activity>
+        <activity android:name=".View.Home.TaiXe.DangKyTaiXeActivity" android:exported="false">
+
+        </activity>
+
+
+        <activity android:name=".View.Home.NhanVienCongTy.TrangChuNhanVienActivity">
+
+        </activity>
+        <activity android:name=".View.Home.NhanVienCongTy.TrangChuQuanLiNhanSuActivity">
+
+        </activity>
+
     </application>
 
 </manifest>

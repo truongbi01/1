@@ -3,20 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
-    <ImageView
-        android:id="@+id/back_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/baseline_arrow_back_24"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="16dp" />
+
     <TextView
         android:id="@+id/welcome_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Thật tuyệt khi bạn trở lại!"
         android:textSize="18sp"
-        android:layout_below="@id/back_button"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp" />
     <LinearLayout
@@ -32,11 +25,11 @@
 
 
         <EditText
-            android:id="@+id/phone_number"
+            android:id="@+id/edt_sodienthoai_dangNhap"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="(84+) 792 583 329"
+            android:hint="0792 583 329"
             android:inputType="phone" />
     </LinearLayout>
     <!-- Password Input -->
@@ -51,13 +44,11 @@
         android:padding="8dp">
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/edt_matkhau_dangnhap"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="********"
-            android:inputType="textPassword" />
-
+            android:hint="Password"/>
         <ImageView
             android:id="@+id/show_password"
             android:layout_width="wrap_content"
@@ -69,45 +60,53 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/login_button"
+        android:id="@+id/btn_dangnhap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/password_input"
         android:layout_marginTop="16dp"
-
         android:backgroundTint="@color/orange_fresh"
         android:text="Đăng nhập"
         android:textColor="@android:color/white" />
+    <LinearLayout
+        android:id="@+id/social_login_options"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_below="@id/btn_dangnhap"
+        android:layout_marginTop="16dp">
 
-
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/links"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:layout_below="@id/login_button"
-        android:layout_marginTop="16dp">
-
+        android:layout_below="@id/social_login_options"
+        android:layout_marginTop="5dp">
         <TextView
             android:id="@+id/tv_forgot_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Quên mật khẩu?"
+            android:text="Quên mật khẩu ?"
             android:textColor="@color/orange_fresh" />
 
+
+        <TextView
+            android:id="@+id/tv_DangNhap_DangKy_TaiXe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đăng ký làm tài xế ?"
+            android:textColor="@color/orange_fresh"
+            android:layout_marginTop="8dp"
+            />
         <TextView
             android:id="@+id/tv_chuacoTK"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bạn chưa có tài khoản?"
-            android:textColor="@color/orange_fresh"
-            android:layout_marginTop="8dp" />
-        <TextView
-            android:id="@+id/tv_DangKyTaiXe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bạn muốn đăng ký làm tài xế?"
+            android:text="Bạn chưa có tài khoản ?"
             android:textColor="@color/orange_fresh"
             android:layout_marginTop="8dp" />
     </LinearLayout>
