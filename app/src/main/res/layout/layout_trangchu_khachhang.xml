@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
-    tools:context=".View.Home.KhachHang.Home_khachhang_Activity">
+    tools:context=".View.Home.KhachHang.Home_khachhang">
 
     <FrameLayout
         android:id="@+id/main_layout"
@@ -99,13 +99,15 @@
                         android:src="@drawable/ic_dot" />
 
                     <EditText
-                        android:id="@+id/chondiadiem"
+                        android:id="@+id/edt_chondiadiem_Home_KhachHang"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginStart="10dp"
                         android:hint="Chọn địa điểm"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:autofillHints=""
+                        android:inputType="text" />
 
                     <TextView
                         android:id="@+id/time_text"
@@ -129,13 +131,15 @@
                         android:src="@drawable/ic_map" />
 
                     <EditText
-                        android:id="@+id/diadiemtrakhach"
+                        android:id="@+id/edt_diadiemtrakhach_Home_KhachHang"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginStart="10dp"
                         android:hint="Địa điểm trả khách"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:autofillHints=""
+                        android:inputType="text" />
                 </LinearLayout>
                 <TextView
                     android:id="@+id/add_dropoff_location_text"

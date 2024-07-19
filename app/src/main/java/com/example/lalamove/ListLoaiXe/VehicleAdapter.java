@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,10 +17,11 @@ import java.util.ArrayList;
 public class VehicleAdapter extends ArrayAdapter<PhuongTien> {
     private int selectedPosition = -1;
 
+
     public VehicleAdapter(Context context, ArrayList<PhuongTien> vehicles) {
         super(context, 0, vehicles);
-    }
 
+    }
     @SuppressLint("SetTextI18n")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -31,10 +33,10 @@ public class VehicleAdapter extends ArrayAdapter<PhuongTien> {
 
         ImageView vehicleIcon = convertView.findViewById(R.id.vehicle_icon);
         TextView vehicleName = convertView.findViewById(R.id.vehicle_name);
-        ImageView checkIcon = convertView.findViewById(R.id.check_icon);
+        CheckBox checkIcon = convertView.findViewById(R.id.check_icon);
 
         // Cập nhật tên và icon cho phương tiện
-        vehicleName.setText(vehicle.getTenPhuongTien() + " " + vehicle.getTrongLuong());
+        vehicleName.setText(vehicle.getTenPhuongTien() + " " + vehicle.getTrongLuong() + "Kg");
 
         // Thiết lập icon tùy thuộc vào loại phương tiện
         if (vehicle.getTenPhuongTien().equals("Xe May")) {
@@ -48,10 +50,10 @@ public class VehicleAdapter extends ArrayAdapter<PhuongTien> {
 
         // Quản lý hiển thị trạng thái đã chọn
         if (position == selectedPosition) {
-            checkIcon.setVisibility(View.VISIBLE);
+
             convertView.setBackgroundResource(R.drawable.vehicle_item_background_after);
         } else {
-            checkIcon.setVisibility(View.GONE);
+
             convertView.setBackgroundResource(R.drawable.vehicle_item_background);
         }
 
@@ -60,10 +62,12 @@ public class VehicleAdapter extends ArrayAdapter<PhuongTien> {
             public void onClick(View v) {
                 selectedPosition = (selectedPosition == position) ? -1 : position;
                 notifyDataSetChanged();
+
             }
         });
 
         return convertView;
     }
+
 
 }
