@@ -115,7 +115,7 @@ public class DangKyKhachHangActivity extends AppCompatActivity {
         showPasswordImageView = findViewById(R.id.show_password);
         btn_DangKy = findViewById(R.id.btn_DangKy);
         tv_DaCoTaiKhoan= findViewById(R.id.tv_DaCoTaiKhoan);
-        cb_DieuKhoan = findViewById(R.id.cb_dieukhoan);
+
     }
 
     //Kiem Tra Dinh Dang

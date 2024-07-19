@@ -1,4 +1,4 @@
-package com.example.lalamove.ListLoaiXe;
+package com.example.lalamove.View.Home.KhachHang;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,7 +19,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-
+import com.example.lalamove.ListLoaiXe.VehicleAdapter;
+import com.example.lalamove.ListLoaiXe.PhuongTien;
+import com.example.lalamove.View.model.TableLoaiPhuongTien.QuerySql;
 import com.example.lalamove.R;
 import com.example.lalamove.View.Login.DangNhapActivity;
 import com.google.android.material.navigation.NavigationView;
@@ -39,9 +41,8 @@ public class Home_KhachHang extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_trangchu_khachhang);
 
-        //Anh Xa
+        // AnhXa
         AnhXa();
-
 
         // Inflate the additional interface layout
         additionalInterface = (LinearLayout) getLayoutInflater().inflate(R.layout.layout_trangchu_menuthanhtoan, null);
@@ -98,49 +99,37 @@ public class Home_KhachHang extends AppCompatActivity {
                 drawerLayout.closeDrawers();
                 int menuID = item.getItemId();
                 if (menuID == R.id.nav_orders) {
-                    getSupportActionBar().setTitle(item.getTitle());
 
                     return true;
 
                 } else if (menuID == R.id.nav_recharge) {
-                    getSupportActionBar().setTitle(item.getTitle());
 
                     return true;
 
-                }else if (menuID == R.id.nav_favorite_drivers) {
-                    getSupportActionBar().setTitle(item.getTitle());
+                } else if (menuID == R.id.nav_favorite_drivers) {
 
                     return true;
 
-                }else if (menuID == R.id.nav_settings) {
+                } else if (menuID == R.id.nav_settings) {
 
                     return true;
 
-                }
-                else if (menuID == R.id.nav_help_center) {
+                } else if (menuID == R.id.nav_help_center) {
 
                     return true;
 
-                }else if (menuID == R.id.nav_logout) {
-                    getSupportActionBar().setTitle(item.getTitle());
+                } else if (menuID == R.id.nav_logout) {
                     ChuyenTrang(Home_KhachHang.this, DangNhapActivity.class);
                     return true;
 
-                }else
-                return true;
+                } else
+                    return true;
             }
         });
 
-        // Thiết lập danh sách phương tiện
-        ArrayList<Vehicle> vehicles = new ArrayList<>();
-        vehicles.add(new Vehicle(R.drawable.ic_scooter, "Xe Máy", "Vận chuyển mặt hàng nhỏ giá trị đến 3 triệu đồng", "0.5 x 0.4 x 0.5 Mét - Lên đến 30 kg"));
-        vehicles.add(new Vehicle(R.drawable.ic_van_500kg, "Xe Van 500 kg", "Vận chuyển hàng hóa lớn hơn", "1.0 x 0.8 x 0.8 Mét - Lên đến 500 kg"));
-        vehicles.add(new Vehicle(R.drawable.ic_van_500kg, "Xe Van 750 kg", "Vận chuyển hàng hóa lớn hơn", "1.2 x 1.0 x 1.0 Mét - Lên đến 750 kg"));
-        vehicles.add(new Vehicle(R.drawable.ic_van_500kg, "Xe Van 1000 kg", "Vận chuyển hàng hóa lớn hơn", "1.5 x 1.2 x 1.2 Mét - Lên đến 1000 kg"));
-        vehicles.add(new Vehicle(R.drawable.ic_truck, "Xe Bán Tải", "Vận chuyển hàng hóa lớn hơn", "2.0 x 1.5 x 1.5 Mét - Lên đến 1500 kg"));
-        vehicles.add(new Vehicle(R.drawable.ic_semi_truck, "Xe Tải 500 kg", "Vận chuyển hàng hóa lớn hơn", "2.5 x 2.0 x 2.0 Mét - Lên đến 2000 kg"));
-        vehicles.add(new Vehicle(R.drawable.ic_semi_truck, "Xe Tải 1000 kg", "Vận chuyển hàng hóa lớn hơn", "3.0 x 2.5 x 2.5 Mét - Lên đến 3000 kg"));
-        vehicles.add(new Vehicle(R.drawable.ic_semi_truck, "Xe Tải 1250 kg", "Vận chuyển hàng hóa lớn hơn", "3.5 x 3.0 x 3.0 Mét - Lên đến 3500 kg"));
+        // Tải dữ liệu từ database và thiết lập danh sách phương tiện
+        QuerySql querySql = new QuerySql();
+        ArrayList<PhuongTien> vehicles = new ArrayList<>(querySql.getDataPhuongTien());
 
         VehicleAdapter adapter = new VehicleAdapter(this, vehicles);
         vehicleList.setAdapter(adapter);
@@ -169,8 +158,8 @@ public class Home_KhachHang extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Home_KhachHang.this, BuocTiepTheoActivity.class);
-                startActivity(intent);
+                /*Intent intent = new Intent(Home_KhachHang.this, BuocTiepTheoActivity.class);
+                startActivity(intent);*/
             }
         });
     }
@@ -195,7 +184,8 @@ public class Home_KhachHang extends AppCompatActivity {
             mainLayout.removeView(additionalInterface);
         }
     }
-    void AnhXa(){
+
+    void AnhXa() {
         // Ánh xạ các view
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigation_view);
@@ -203,9 +193,9 @@ public class Home_KhachHang extends AppCompatActivity {
         chondiadiem = findViewById(R.id.chondiadiem);
         vehicleList = findViewById(R.id.vehicle_list);
     }
-    void ChuyenTrang(Context context, Class lop){
-        Intent i = new Intent(context,lop);
+
+    void ChuyenTrang(Context context, Class<?> lop) {
+        Intent i = new Intent(context, lop);
         startActivity(i);
     }
-
 }

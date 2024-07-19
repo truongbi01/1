@@ -35,22 +35,4 @@
             android:src="@drawable/ic_check"
             android:visibility="gone" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/vehicle_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="Vận chuyển mặt hàng nhỏ giá trị đến 3 triệu đồng"
-        android:textSize="14sp"
-        android:visibility="gone" />
-
-    <TextView
-        android:id="@+id/vehicle_dimensions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="0.5 x 0.4 x 0.5 Mét - Lên đến 30 kg"
-        android:textSize="14sp"
-        android:visibility="gone" />
 </LinearLayout>

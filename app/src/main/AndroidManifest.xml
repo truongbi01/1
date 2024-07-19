@@ -45,7 +45,7 @@
         </activity>
 
 
-        <activity android:name=".ListLoaiXe.Home_KhachHang" android:exported="false">
+        <activity android:name=".View.Home.KhachHang.Home_KhachHang" android:exported="false">
 
         </activity>
         <activity android:name=".ListLoaiXe.BuocTiepTheoActivity">

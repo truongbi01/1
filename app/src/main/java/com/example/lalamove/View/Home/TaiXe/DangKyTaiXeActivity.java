@@ -18,9 +18,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.lalamove.R;
-import com.example.lalamove.View.Home.KhachHang.DangKyKhachHangActivity;
 import com.example.lalamove.View.Login.DangNhapActivity;
-import com.example.lalamove.View.model.TableTaiXe.LoaiPhuongTien;
+import com.example.lalamove.View.model.TableLoaiPhuongTien.LoaiPhuongTien;
 import com.example.lalamove.View.model.TableTaiXe.TaiXe;
 
 public class DangKyTaiXeActivity extends AppCompatActivity {
@@ -79,7 +78,8 @@ public class DangKyTaiXeActivity extends AppCompatActivity {
 
                 String soDienThoai = edt_sodienthoai_TaiXe.getText().toString();
                 String matKhau = edt_matkhau_TaiXe.getText().toString();
-                String ten = edt_ten_TaiXe.getText().toString();
+                String ten =(edt_ten_TaiXe.getText().toString());
+                ten = ten.trim().replaceAll("\\s+", " ");
                 String bienso = edt_Bienso_vanchuyen.getText().toString();
                 String tenphuongtien = spinner_phuongtien.getSelectedItem().toString();
                 String maphuongtien = loaiPhuongTien.getMaPhuongTien(tenphuongtien, DangKyTaiXeActivity.this);

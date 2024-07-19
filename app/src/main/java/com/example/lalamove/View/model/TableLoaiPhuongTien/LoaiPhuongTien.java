@@ -1,4 +1,4 @@
-package com.example.lalamove.View.model.TableTaiXe;
+package com.example.lalamove.View.model.TableLoaiPhuongTien;
 
 import static android.content.ContentValues.TAG;
 
