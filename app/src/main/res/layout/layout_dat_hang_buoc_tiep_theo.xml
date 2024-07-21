@@ -129,33 +129,35 @@
 
 
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:layout_below="@id/loading"
+        android:layout_marginTop="210dp"
         android:background="#FFFFFF"
-        android:layout_below="@id/loading">
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/total_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:text="Tổng cộng"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/total_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="₫ 17.280"
-            android:textSize="16sp"
-            android:textStyle="bold"
             android:layout_below="@id/total_text"
             android:layout_alignStart="@id/total_text"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="8dp"
+            android:text="₫ 17.280"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/login_button"
