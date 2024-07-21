@@ -1,9 +1,11 @@
-package com.example.lalamove;
+package com.example.lalamove.View.Home.TaiXe;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+
+import com.example.lalamove.R;
 import com.google.android.material.tabs.TabLayout;
 
 import com.example.lalamove.Fragment.FragmentDaHoanThanh;

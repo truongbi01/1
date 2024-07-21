@@ -17,8 +17,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.lalamove.R;
-import com.example.lalamove.View.Login.LoginActivity;
-import com.example.lalamove.View.model.QuerySql;
+import com.example.lalamove.View.Home.TaiXe.DangKyTaiXeActivity;
+import com.example.lalamove.View.Login.DangNhapActivity;
+import com.example.lalamove.View.model.TableKhachHang.QuerySql;
 import com.example.lalamove.database.data.ConnectionHelper;
 
 import java.sql.Connection;
@@ -67,7 +68,7 @@ public class DangKyKhachHangActivity extends AppCompatActivity {
                 String email = edt_email_khachhang.getText().toString();
                 String matKhau = edt_matkhau_khachhang.getText().toString();
                 String ten = edt_ten_khachhang.getText().toString();
-                if(!isDinhDangSoDienThoai(soDienThoai)){
+                if(!isDinhDangSoDienThoai(soDienThoai) ){
                     edt_sodienthoai_khachhang.setError("Số điện thoại phải đủ 10 số");
                 }
                 else if(!isDinhDangEmail(email)){
@@ -83,7 +84,7 @@ public class DangKyKhachHangActivity extends AppCompatActivity {
                 {
                     try{
                         querySql.sp_insert_TaiKhoan(soDienThoai,ten,matKhau,role,null, DangKyKhachHangActivity.this);
-                        Intent intent = new Intent(DangKyKhachHangActivity.this, LoginActivity.class);
+                        Intent intent = new Intent(DangKyKhachHangActivity.this, DangNhapActivity.class);
                         startActivity(intent);
                     }catch (Exception e)
                     {
@@ -97,7 +98,7 @@ public class DangKyKhachHangActivity extends AppCompatActivity {
         tv_DaCoTaiKhoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DangKyKhachHangActivity.this, LoginActivity.class);
+                Intent intent = new Intent(DangKyKhachHangActivity.this, DangNhapActivity.class);
                 startActivity(intent);
             }
         });
@@ -114,7 +115,7 @@ public class DangKyKhachHangActivity extends AppCompatActivity {
         showPasswordImageView = findViewById(R.id.show_password);
         btn_DangKy = findViewById(R.id.btn_DangKy);
         tv_DaCoTaiKhoan= findViewById(R.id.tv_DaCoTaiKhoan);
-        cb_DieuKhoan = findViewById(R.id.cb_dieukhoan);
+
     }
 
     //Kiem Tra Dinh Dang
