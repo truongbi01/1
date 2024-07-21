@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".View.Home.KhachHang.Home_khachhang_Activity">
+    tools:context=".View.Home.KhachHang.Home_KhachHang">
 
     <!-- Back Button -->
     <ImageButton
@@ -129,44 +129,7 @@
 
 
     </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:background="#FFFFFF"
-        android:layout_below="@id/loading">
 
-        <TextView
-            android:id="@+id/total_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tổng cộng"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true" />
-
-        <TextView
-            android:id="@+id/total_amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="₫ 17.280"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_below="@id/total_text"
-            android:layout_alignStart="@id/total_text"
-            android:layout_marginTop="8dp" />
-
-        <Button
-            android:id="@+id/login_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/total_amount"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/orange_fresh"
-            android:text="Xem lại đơn hàng"
-            android:textColor="@android:color/white" />
-    </RelativeLayout>
 
 
 </RelativeLayout>

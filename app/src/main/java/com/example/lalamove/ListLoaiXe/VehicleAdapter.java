@@ -16,12 +16,24 @@ import java.util.ArrayList;
 
 public class VehicleAdapter extends ArrayAdapter<PhuongTien> {
     private int selectedPosition = -1;
+    private OnVehicleSelectedListener listener;
 
+    public interface OnVehicleSelectedListener {
+        void onVehicleSelected(int position);
+    }
+
+    public void setOnVehicleSelectedListener(OnVehicleSelectedListener listener) {
+        this.listener = listener;
+    }
+
+    public int getSelectedPosition() {
+        return selectedPosition;
+    }
 
     public VehicleAdapter(Context context, ArrayList<PhuongTien> vehicles) {
         super(context, 0, vehicles);
-
     }
+
     @SuppressLint("SetTextI18n")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -41,7 +53,7 @@ public class VehicleAdapter extends ArrayAdapter<PhuongTien> {
         // Thiết lập icon tùy thuộc vào loại phương tiện
         if (vehicle.getTenPhuongTien().equals("Xe May")) {
             vehicleIcon.setImageResource(R.drawable.ic_scooter);
-        } else if (vehicle.getTenPhuongTien().equals("Xe Tai Nho") || vehicle.getTenPhuongTien().equals("Xe Van Nho") ) {
+        } else if (vehicle.getTenPhuongTien().equals("Xe Tai Nho") || vehicle.getTenPhuongTien().equals("Xe Van Nho")) {
             vehicleIcon.setImageResource(R.drawable.ic_truck);
         } else {
             // Đặt icon mặc định nếu loại phương tiện không khớp
@@ -50,11 +62,11 @@ public class VehicleAdapter extends ArrayAdapter<PhuongTien> {
 
         // Quản lý hiển thị trạng thái đã chọn
         if (position == selectedPosition) {
-
             convertView.setBackgroundResource(R.drawable.vehicle_item_background_after);
+            checkIcon.setChecked(true);
         } else {
-
             convertView.setBackgroundResource(R.drawable.vehicle_item_background);
+            checkIcon.setChecked(false);
         }
 
         convertView.setOnClickListener(new View.OnClickListener() {
@@ -62,12 +74,12 @@ public class VehicleAdapter extends ArrayAdapter<PhuongTien> {
             public void onClick(View v) {
                 selectedPosition = (selectedPosition == position) ? -1 : position;
                 notifyDataSetChanged();
-
+                if (listener != null) {
+                    listener.onVehicleSelected(selectedPosition);
+                }
             }
         });
 
         return convertView;
     }
-
-
 }
