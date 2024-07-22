@@ -75,7 +75,7 @@ public class DangKyKhachHangActivity extends AppCompatActivity {
                     edt_email_khachhang.setError("email phải đúng đinh dạng abc@...com");
                 }
                 else if(!isDinhDangMatKhau(matKhau)){
-                    edt_matkhau_khachhang.setError("Số điện thoại phải đủ 10 số");
+                    edt_matkhau_khachhang.setError("Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt");
                 }
                 else if(!isDinhDangTen(ten)){
                     edt_ten_khachhang.setError("Tên không đúng định dạng");

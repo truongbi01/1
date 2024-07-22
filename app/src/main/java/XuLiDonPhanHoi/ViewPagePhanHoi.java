@@ -1,4 +1,6 @@
-package com.example.lalamove.Fragment;
+package XuLiDonPhanHoi;
+
+
 
 
 import androidx.annotation.NonNull;
@@ -10,13 +12,11 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-public class ViewPagerAdapter extends FragmentPagerAdapter {
+public class ViewPagePhanHoi extends FragmentPagerAdapter {
     private final List<Fragment> fragmentList = new ArrayList<>();
     private final List<String> fragmentTitleList = new ArrayList<>();
 
-    public ViewPagerAdapter(@NonNull FragmentManager fm, int behavior) {
+    public ViewPagePhanHoi(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);
     }
 
@@ -41,6 +41,5 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         fragmentList.add(fragment);
         fragmentTitleList.add(title);
     }
-
-
 }
+
