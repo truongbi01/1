@@ -112,8 +112,8 @@ public class Home_KhachHang extends AppCompatActivity {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(Home_KhachHang.this, .class);
-                //startActivity(intent);
+                Intent intent = new Intent(Home_KhachHang.this, BuocTiepTheoActivity.class);
+                startActivity(intent);
             }
         });
 

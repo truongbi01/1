@@ -43,7 +43,7 @@
         <activity android:name=".ListLoaiXe.FragmentLoaiXe" android:exported="false">
 
         </activity>
-        <activity android:name=".ListLoaiXe.BuocTiepTheoActivity">
+        <activity android:name=".View.Home.KhachHang.BuocTiepTheoActivity">
         </activity>
         <activity android:name=".ListLoaiXe.MenuThanhToanActivity" android:exported="false">
 

@@ -1,4 +1,4 @@
-package com.example.lalamove.ListLoaiXe;
+package com.example.lalamove.View.Home.KhachHang;
 
 
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.lalamove.R;
 
 public class BuocTiepTheoActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,5 +23,9 @@ public class BuocTiepTheoActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    void AnhXa(){
+
     }
 }
