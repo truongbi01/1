@@ -73,7 +73,9 @@
             android:text="Thực phẩm đồ uống"
             android:textSize="12sp"
             android:textStyle="bold"
-            android:layout_gravity="start"/>
+            android:layout_gravity="start"
+            android:checked="true"
+            />
 
         <RadioButton
             android:id="@+id/radio_VanPhongPham"
@@ -91,7 +93,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="10dp"
-            android:text="Quần áo  phụ kiện"
+            android:text="Quần áo phụ kiện"
             android:textSize="12sp"
             android:textStyle="bold" />
 
@@ -111,7 +113,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="10dp"
-            android:text="Đồ gia dụng / nội thất"
+            android:text="Đồ gia dụng"
             android:textSize="12sp"
             android:textStyle="bold" />
 
@@ -121,19 +123,11 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="10dp"
-            android:text="Nguyên vật liệu / linh kiện"
+            android:text="Nguyên vật liệu"
             android:textSize="12sp"
             android:textStyle="bold" />
 
-        <RadioButton
-            android:id="@+id/radio_khac"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="Khác"
-            android:textSize="12sp"
-            android:textStyle="bold" />
+
     </RadioGroup>
 
     <View
@@ -147,6 +141,7 @@
         android:id="@+id/soluong_goihang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:layout_below="@+id/thanhngang">
         <ImageButton
             android:id="@+id/soluonggoihang"
@@ -170,16 +165,38 @@
             android:gravity="center"
             android:layout_marginTop="10dp"
             android:padding="10dp" />
-        <EditText
-            android:id="@+id/edt_SoLuongGoiHang"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Số lượng "
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginTop="10dp"
-            android:padding="10dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginTop="6dp">
+            <ImageButton
+                android:id="@+id/btn_TruSoLuong"
+                android:src="@drawable/ic_minus_20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/white"/>
+            <EditText
+                android:id="@+id/edt_SoLuongGoiHang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:inputType="number"/>
+            <ImageButton
+                android:id="@+id/btn_CongSoLuong"
+                android:src="@drawable/ic_plus_20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/white"/>
+        </LinearLayout>
+
     </LinearLayout>
 
     <View

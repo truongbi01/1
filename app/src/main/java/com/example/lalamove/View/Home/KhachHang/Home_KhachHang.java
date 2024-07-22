@@ -3,6 +3,7 @@ package com.example.lalamove.View.Home.KhachHang;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -23,12 +24,14 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.lalamove.ListLoaiXe.VehicleAdapter;
 import com.example.lalamove.ListLoaiXe.PhuongTien;
+import com.example.lalamove.View.model.TableLoaiPhuongTien.LoaiPhuongTien;
 import com.example.lalamove.View.model.TableLoaiPhuongTien.QuerySql;
 import com.example.lalamove.R;
 import com.example.lalamove.View.Login.DangNhapActivity;
 import com.example.lalamove.View.model.TinhKhoangCach;
 import com.google.android.material.navigation.NavigationView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Home_KhachHang extends AppCompatActivity {
@@ -41,6 +44,9 @@ public class Home_KhachHang extends AppCompatActivity {
     private CheckBox cb_item;
     private TextView tv_tongtien;
     private LinearLayout thanhtoantt;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    private int tongTien;
 
     @SuppressLint("InflateParams")
     @Override
@@ -50,6 +56,10 @@ public class Home_KhachHang extends AppCompatActivity {
 
         // AnhXa
         AnhXa();
+
+        //Khai báo sharedPreferences
+        sharedPreferences = Home_KhachHang.this.getSharedPreferences("LuongDatHang", Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
         thanhtoantt.setVisibility(View.GONE); // Ẩn thanh toán ban đầu
 
@@ -112,8 +122,24 @@ public class Home_KhachHang extends AppCompatActivity {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Home_KhachHang.this, BuocTiepTheoActivity.class);
-                startActivity(intent);
+                String noiGiao = edt_NoiGiao.getText().toString().trim();
+                String noiNhan = edt_NoiNhan.getText().toString().trim();
+
+                VehicleAdapter adapter = (VehicleAdapter) vehicleList.getAdapter();
+                String maPhuongTien = adapter.getSelectedVehicleId();
+
+                if (maPhuongTien != null) {
+                    editor.putString("noinhan", noiNhan);
+                    editor.putString("noigiao", noiGiao);
+                    editor.putString("maphuongtien", maPhuongTien);
+                    editor.putInt("tongtien",tongTien); // Lưu tổng tiền
+                    editor.apply();
+
+                    Intent intent = new Intent(Home_KhachHang.this, BuocTiepTheoActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(Home_KhachHang.this, "Vui lòng chọn phương tiện", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -158,10 +184,17 @@ public class Home_KhachHang extends AppCompatActivity {
 
             if (distance >= 0) {
                 // Tính giá dựa trên khoảng cách và phương tiện được chọn
-                double price = calculatePrice(distance, adapter.getSelectedPosition());
+                tongTien = calculatePrice(distance, adapter.getSelectedPosition());
 
                 // Hiển thị khoảng cách và giá
-                tv_tongtien.setText(String.format("%.2f km - %.2f đ", distance, price));
+                DecimalFormat df = new DecimalFormat("#,###");
+                int intDistance = (int) Math.round(distance);
+                int intTongTien = (int) Math.round(tongTien);
+
+                String formattedDistance = df.format(intDistance);
+                String formattedTongTien = df.format(intTongTien);
+
+                tv_tongtien.setText(String.format("%s km - %s đ", formattedDistance, formattedTongTien));
                 thanhtoantt.setVisibility(View.VISIBLE);
                 btn_next.setEnabled(true);
             } else {
@@ -169,14 +202,16 @@ public class Home_KhachHang extends AppCompatActivity {
                 Toast.makeText(this, "Không thể tính khoảng cách. Vui lòng kiểm tra lại địa chỉ.", Toast.LENGTH_SHORT).show();
                 thanhtoantt.setVisibility(View.GONE);
                 btn_next.setEnabled(false);
+                tongTien = 0;
             }
         } else {
             thanhtoantt.setVisibility(View.GONE);
             btn_next.setEnabled(false);
+            tongTien = 0;
         }
     }
 
-    private double calculatePrice(double distance, int vehicleType) {
+    private int calculatePrice(double distance, int vehicleType) {
         double basePrice;
         switch (vehicleType) {
             case 0: // Xe máy
@@ -204,7 +239,7 @@ public class Home_KhachHang extends AppCompatActivity {
                 basePrice = 0;
                 break;
         }
-        return basePrice * distance;
+        return  (int)(basePrice * distance);
     }
 
     @SuppressLint({"InflateParams", "CutPasteId"})

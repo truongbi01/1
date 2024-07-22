@@ -17,9 +17,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.lalamove.R;
-import com.example.lalamove.View.Home.TaiXe.DangKyTaiXeActivity;
 import com.example.lalamove.View.Login.DangNhapActivity;
-import com.example.lalamove.View.model.TableKhachHang.QuerySql;
+import com.example.lalamove.View.model.TableKhachHang.QuerySql_KhachHang;
 import com.example.lalamove.database.data.ConnectionHelper;
 
 import java.sql.Connection;
@@ -33,7 +32,7 @@ public class DangKyKhachHangActivity extends AppCompatActivity {
     private boolean isPasswordVisible = false;
     ConnectionHelper connectionHelper = new ConnectionHelper();
     Connection connection;
-    QuerySql querySql = new QuerySql();
+    QuerySql_KhachHang querySql = new QuerySql_KhachHang();
     String role = "KhachHang";
     CheckBox cb_DieuKhoan;
 

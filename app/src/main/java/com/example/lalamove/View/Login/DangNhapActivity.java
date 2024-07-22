@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.example.lalamove.R;
 import com.example.lalamove.View.Home.KhachHang.DangKyKhachHangActivity;
 import com.example.lalamove.View.Home.TaiXe.DangKyTaiXeActivity;
-import com.example.lalamove.View.model.TableKhachHang.QuerySql;
+import com.example.lalamove.View.model.TableKhachHang.QuerySql_KhachHang;
 
 public class DangNhapActivity extends AppCompatActivity {
 
@@ -25,9 +25,9 @@ public class DangNhapActivity extends AppCompatActivity {
     private TextView tv_DangKy, tv_QuenMatKhau, tv_dangkylamtaixe;
     private Button btn_DangNhap;
     private boolean isPasswordVisible = false;
-    private QuerySql querySql;
-    private SharedPreferences sharedPreferences;
-
+    private QuerySql_KhachHang querySql;
+    private SharedPreferences sharedPreferences,sharedPreferences2;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,6 @@ public class DangNhapActivity extends AppCompatActivity {
 
         // Khởi tạo SharedPreferences
         sharedPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
-
 
         // Ánh xạ
         AnhXa();
@@ -55,7 +54,7 @@ public class DangNhapActivity extends AppCompatActivity {
                         Toast.makeText(DangNhapActivity.this, "Tài khoản bị khóa. Vui lòng thử lại sau." , Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    querySql = new QuerySql();
+                    querySql = new QuerySql_KhachHang();
                     querySql.sp_search_taikhoan(soDienThoai, matkhau, DangNhapActivity.this);
                 }
             }

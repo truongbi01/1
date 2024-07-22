@@ -122,7 +122,7 @@ public class DangKyTaiXeActivity extends AppCompatActivity {
     void loadPhuongTienData() {
         try {
             LoaiPhuongTien loaiPhuongTien = new LoaiPhuongTien(this, spinner_phuongtien);
-            loaiPhuongTien.loadData();
+            loaiPhuongTien.loadDataTenPhuongTien();
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(this, "Lỗi khi tải dữ liệu phương tiện: " + e.getMessage(), Toast.LENGTH_SHORT).show();

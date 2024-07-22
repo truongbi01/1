@@ -17,7 +17,7 @@
         <activity android:name=".View.BatDau.GioiThieu" android:exported="false">
 
         </activity>
-        <activity android:name=".View.Login.LoginActivity" android:exported="true">
+        <activity android:name=".View.Login.DangNhapActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,30 +32,27 @@
 
 
         </activity>
-        <activity android:name=".DonHangActivity" android:exported="false">
-
-        </activity>
-        <activity android:name="View.Login.LoginActivity" android:exported="false"
-            tools:ignore="MissingClass">
-
-
-        </activity>
-        <activity android:name=".ListLoaiXe.FragmentLoaiXe" android:exported="false">
+        <activity android:name=".View.Home.TaiXe.DonHangActivity" android:exported="false">
 
         </activity>
         <activity android:name=".View.Home.KhachHang.BuocTiepTheoActivity">
         </activity>
-        <activity android:name=".ListLoaiXe.MenuThanhToanActivity" android:exported="false">
-
-
-        </activity>
-        <activity android:name=".View.Home.KhachHang.Home_khachhang_Activity" android:exported="false">
+        <activity android:name=".View.Home.KhachHang.Home_KhachHang" android:exported="false">
 
         </activity>
-        <activity android:name=".View.Home.QuanLy.Home_QuanLy_Activity" android:exported="false">
+        <activity android:name=".View.Home.NhanVienCongTy.Home_QuanLy_Activity" android:exported="false">
 
         </activity>
-        <activity android:name=".View.Home.TaiXe.Home_TaiXe_Activity" android:exported="false">
+        <activity android:name=".View.Home.TaiXe.TrangChuTaiXeActivity" android:exported="false">
+
+        </activity>
+        <activity android:name=".View.Home.KhachHang.BoSungChiTietActvity" android:exported="false">
+
+        </activity>
+        <activity android:name=".View.Home.KhachHang.GhiChuChoTaiXeActivity" android:exported="false">
+
+        </activity>
+        <activity android:name=".View.Home.KhachHang.DonHangActivity" android:exported="false">
 
         </activity>
     </application>

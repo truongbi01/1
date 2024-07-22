@@ -17,6 +17,12 @@ import java.util.ArrayList;
 public class VehicleAdapter extends ArrayAdapter<PhuongTien> {
     private int selectedPosition = -1;
     private OnVehicleSelectedListener listener;
+    public String getSelectedVehicleId() {
+        if (selectedPosition != -1) {
+            return getItem(selectedPosition).getMaPhuongTien();
+        }
+        return null;
+    }
 
     public interface OnVehicleSelectedListener {
         void onVehicleSelected(int position);

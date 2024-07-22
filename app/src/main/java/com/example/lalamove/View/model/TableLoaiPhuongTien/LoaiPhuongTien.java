@@ -31,7 +31,7 @@ public class LoaiPhuongTien {
         this.connectionHelper = new ConnectionHelper();
     }
 
-    public void loadData() {
+    public void loadDataTenPhuongTien() {
         List<String> phuongTienList = new ArrayList<>();
         try {
             con = connectionHelper.connectionClass();
