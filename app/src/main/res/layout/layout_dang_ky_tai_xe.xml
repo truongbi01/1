@@ -8,8 +8,8 @@
         android:id="@+id/title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Đăng ký tài khoản Tài Xế"
-        android:textSize="18sp"
+        android:text="Chi tiết tài khoản"
+        android:textSize="20sp"
         android:padding="10dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp" />
@@ -50,9 +50,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:autofillHints=""
             android:hint="Mật khẩu (tối thiểu 6 ký tự)"
-            android:inputType="textPassword"
-            android:autofillHints="" />
+            android:inputType="textPassword" />
 
         <ImageView
             android:id="@+id/show_password"
