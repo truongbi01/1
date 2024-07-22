@@ -70,6 +70,8 @@ public class Home_KhachHang extends AppCompatActivity {
                 drawerLayout.closeDrawers();
                 int menuID = item.getItemId();
                 if (menuID == R.id.nav_orders) {
+                    //Di chuyển tới trang đơn hàng
+                    ChuyenTrang(Home_KhachHang.this, DonHangActivity.class);
                     return true;
                 } else if (menuID == R.id.nav_recharge) {
                     return true;
