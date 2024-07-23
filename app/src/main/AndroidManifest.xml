@@ -55,6 +55,9 @@
         <activity android:name=".View.Home.KhachHang.DonHangActivity" android:exported="false">
 
         </activity>
+        <activity android:name=".View.Home.KhachHang.TrungTamTroGiupActivity" android:exported="false">
+
+        </activity>
     </application>
 
 </manifest>

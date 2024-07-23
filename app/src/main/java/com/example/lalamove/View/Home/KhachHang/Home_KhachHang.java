@@ -80,6 +80,7 @@ public class Home_KhachHang extends AppCompatActivity {
                 } else if (menuID == R.id.nav_settings) {
                     return true;
                 } else if (menuID == R.id.nav_help_center) {
+                    ChuyenTrang(Home_KhachHang.this, TrungTamTroGiupActivity.class);
                     return true;
                 } else if (menuID == R.id.nav_logout) {
                     ChuyenTrang(Home_KhachHang.this, DangNhapActivity.class);
