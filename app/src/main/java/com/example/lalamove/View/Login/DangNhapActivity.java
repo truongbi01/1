@@ -1,5 +1,6 @@
 package com.example.lalamove.View.Login;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
@@ -8,15 +9,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.content.Intent;
-import androidx.appcompat.app.AppCompatActivity;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.lalamove.R;
 import com.example.lalamove.View.Home.KhachHang.DangKyKhachHangActivity;
 import com.example.lalamove.View.Home.TaiXe.DangKyTaiXeActivity;
 import com.example.lalamove.View.model.TableKhachHang.QuerySql_KhachHang;
+import com.google.firebase.FirebaseApp;
 
 public class DangNhapActivity extends AppCompatActivity {
 
@@ -33,6 +35,7 @@ public class DangNhapActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_dangnhap);
+        FirebaseApp.initializeApp(this);
 
         // Khởi tạo SharedPreferences
         sharedPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);

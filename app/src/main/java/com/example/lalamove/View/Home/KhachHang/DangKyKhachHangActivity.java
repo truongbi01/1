@@ -13,7 +13,10 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.lalamove.R;
@@ -82,9 +85,23 @@ public class DangKyKhachHangActivity extends AppCompatActivity {
                 else
                 {
                     try{
-                        querySql.sp_insert_TaiKhoan(soDienThoai,ten,matKhau,role,null, DangKyKhachHangActivity.this);
-                        Intent intent = new Intent(DangKyKhachHangActivity.this, DangNhapActivity.class);
-                        startActivity(intent);
+                        ActivityResultLauncher<Intent> otpIntent = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                        result -> {
+                           if (result.getResultCode() == DangKyKhachHangActivity.RESULT_OK)
+                           {
+                               Intent data = result.getData();
+                               if(data!=null&&data.getBooleanExtra("kq",false)==true)
+                               {
+                                querySql.sp_insert_TaiKhoan(soDienThoai,ten,matKhau,role,null, DangKyKhachHangActivity.this);
+                                Intent intent = new Intent(DangKyKhachHangActivity.this, DangNhapActivity.class);
+                                startActivity(intent);
+                               }
+                               else
+                               {
+                                   Toast.makeText(this, "Xác thực thất bại", Toast.LENGTH_SHORT).show();
+                               }
+                           }
+                        });
                     }catch (Exception e)
                     {
                         Log.e(TAG, e.getMessage(), null);
