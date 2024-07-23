@@ -13,6 +13,8 @@ import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.lalamove.View.Home.KhachHang.DonHang.DonHangActivity;
 import com.example.lalamove.View.model.TableDonDatGiaoHang.QuerySql_DonDatGiaoHang;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -117,7 +119,7 @@ public class BuocTiepTheoActivity extends AppCompatActivity {
                         editor.apply();
 
                         //Di chuyển tới trang đơn hàng
-                        Intent i = new Intent(BuocTiepTheoActivity.this,DonHangActivity.class);
+                        Intent i = new Intent(BuocTiepTheoActivity.this, DonHangActivity.class);
                         startActivity(i);
                     }
                 }

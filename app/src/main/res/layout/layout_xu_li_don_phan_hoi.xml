@@ -5,14 +5,14 @@
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbar_DonHang"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="?attr/actionBarTheme"
         android:popupTheme="?attr/actionBarPopupTheme">
 
         <ImageView
-            android:id="@+id/img_QuayLai"
+            android:id="@+id/back_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/baseline_arrow_back_24"
@@ -22,7 +22,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Đơn Hàng"
+            android:text="Xử lí đơn phản hồi"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:layout_gravity="center" />
@@ -31,7 +31,7 @@
 
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout_Donhang"
+        android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar"
@@ -41,8 +41,8 @@
         app:tabTextColor="@android:color/black"/>
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/view_pager_DonHang"
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/tab_layout_Donhang"/>
+        android:layout_below="@id/tab_layout"/>
 </RelativeLayout>

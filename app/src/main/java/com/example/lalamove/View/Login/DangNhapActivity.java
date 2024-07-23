@@ -36,7 +36,8 @@ public class DangNhapActivity extends AppCompatActivity {
 
         // Khởi tạo SharedPreferences
         sharedPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
-
+        sharedPreferences2 = getSharedPreferences("ThongTinDangNhap", MODE_PRIVATE);
+        editor = sharedPreferences2.edit();
         // Ánh xạ
         AnhXa();
 
@@ -56,6 +57,8 @@ public class DangNhapActivity extends AppCompatActivity {
                     }
                     querySql = new QuerySql_KhachHang();
                     querySql.sp_search_taikhoan(soDienThoai, matkhau, DangNhapActivity.this);
+                    editor.putString("sodienthoai",soDienThoai);
+                    editor.apply();
                 }
             }
         });

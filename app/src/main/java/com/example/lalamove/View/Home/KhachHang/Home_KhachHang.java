@@ -24,7 +24,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.lalamove.ListLoaiXe.VehicleAdapter;
 import com.example.lalamove.ListLoaiXe.PhuongTien;
-import com.example.lalamove.View.model.TableLoaiPhuongTien.LoaiPhuongTien;
+import com.example.lalamove.View.Home.KhachHang.DonHang.DonHangActivity;
 import com.example.lalamove.View.model.TableLoaiPhuongTien.QuerySql;
 import com.example.lalamove.R;
 import com.example.lalamove.View.Login.DangNhapActivity;
