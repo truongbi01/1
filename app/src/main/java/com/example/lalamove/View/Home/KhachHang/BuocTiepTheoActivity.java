@@ -13,11 +13,11 @@ import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.lalamove.View.model.TableDonDatGiaoHang.QuerySql_DonDatGiaoHang;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.lalamove.R;
+import com.example.lalamove.View.model.TableDonDatGiaoHang.QuerySql_DonDatGiaoHang;
 import com.example.lalamove.View.model.TableTaiXeYeuThich.QuerySql;
 
 
@@ -129,7 +129,7 @@ public class BuocTiepTheoActivity extends AppCompatActivity {
     void AnhXa(){
         rlt_ThemChiTietHangHoa = findViewById(R.id.rlt_ThemChiTietHangHoa);
         rlt_GhiChu = findViewById(R.id.rlt_GhiChu);
-        btnBack = findViewById(R.id.btn_back);
+        btnBack = findViewById(R.id.btn_back_bsct);
         btn_buoctieptheo = findViewById(R.id.btn_buoctieptheo);
         edt_SoDienThoaiNguoiGui = findViewById(R.id.edt_SoDienThoaiNguoiGui);
         edt_SoDienThoaiNguoiNhan = findViewById(R.id.edt_SoDienThoaiNguoiNhan);

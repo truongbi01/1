@@ -31,6 +31,7 @@ public class XacNhanOTPActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        init();
 
         IdOTP = getIntent().getStringExtra("verificationId");
         btn_xacnhan_OTP.setOnClickListener(v ->
@@ -52,14 +53,13 @@ public class XacNhanOTPActivity extends AppCompatActivity {
         FirebaseAuth.getInstance().signInWithCredential(credential)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        Toast.makeText(this, "Xác thực thành công", Toast.LENGTH_SHORT).show();
                         Intent KQIntent = new Intent();
-                        KQIntent.putExtra("KQotp", true);
+                        KQIntent.putExtra("kq", true);
                         setResult(RESULT_OK, KQIntent);
                         finish();
                         // Chuyển đến màn hình chính của ứng dụng
                     } else {
-                        Toast.makeText(this, "Xác thực thất bại", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Sai ma OTP", Toast.LENGTH_SHORT).show();
                     }
                 });
             }

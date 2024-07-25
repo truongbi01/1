@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" >
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
+    <meta-data
+        android:name="firebase_performance_logcat_enabled"
+        android:value="true" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:label=""
+        android:label="Lalamove"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Lalamove"
@@ -19,7 +20,7 @@
             android:name=".View.Login.XacNhanOTPActivity"
             android:exported="false"
             android:label="@string/title_activity_xac_nhan_otpactivity"
-            android:theme="@style/Theme.Lalamove" />
+           />
         <activity
             android:name=".View.BatDau.GioiThieu"
             android:exported="false" >
@@ -35,7 +36,9 @@
         </activity>
         <activity android:name=".View.Home.KhachHang.DangKyKhachHangActivity" >
         </activity>
-        <activity android:name=".View.Login.ForgotPasswordActivity" >
+    <activity android:name=".View.Home.TaiXe.DangKyTaiXeActivity" >
+    </activity>
+        <activity android:name=".View.Login.QuenmkActivity" >
         </activity>
         <activity
             android:name=".View.Home.TaiXe.DonHangActivity"

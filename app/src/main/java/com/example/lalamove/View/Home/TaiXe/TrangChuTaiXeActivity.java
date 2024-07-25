@@ -23,7 +23,10 @@ public class TrangChuTaiXeActivity extends AppCompatActivity {
         tv_TaiXe_DangXuat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent = new Intent(TrangChuTaiXeActivity.this, DangNhapActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish(); // Kết thúc Activity2 để không giữ lại trên stack
             }
         });
 

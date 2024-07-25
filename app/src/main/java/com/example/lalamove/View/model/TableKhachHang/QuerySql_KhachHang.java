@@ -61,11 +61,11 @@
 
                 if (con != null) {
                     // Kiểm tra xem tài khoản có đang bị khóa không
-                    long lockTime = sharedPreferences.getLong(sodienthoaiDn + "_lockTime", 0);
-                    if (System.currentTimeMillis() < lockTime) {
-                        Toast.makeText(context, "Tài khoản này đang bị khóa. Vui lòng thử lại sau.", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
+//                    long lockTime = sharedPreferences.getLong(sodienthoaiDn + "_lockTime", 0);
+//                    if (System.currentTimeMillis() < lockTime) {
+//                        Toast.makeText(context, "Tài khoản này đang bị khóa. Vui lòng thử lại sau.", Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
 
                     String sql = "{call sp_search_taikhoan(?)}";
                     CallableStatement callableStatement = con.prepareCall(sql);

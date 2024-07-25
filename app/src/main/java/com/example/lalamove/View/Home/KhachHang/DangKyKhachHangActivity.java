@@ -3,6 +3,7 @@ package com.example.lalamove.View.Home.KhachHang;
 import static android.content.ContentValues.TAG;
 
 import android.content.Intent;
+import android.database.SQLException;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -20,9 +21,11 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.lalamove.R;
-import com.example.lalamove.View.Login.DangNhapActivity;
 import com.example.lalamove.View.model.TableKhachHang.QuerySql_KhachHang;
+import com.example.lalamove.View.model.XacThucvaDinhDang.DinhDang;
+import com.example.lalamove.View.model.XacThucvaDinhDang.XacThuc;
 import com.example.lalamove.database.data.ConnectionHelper;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.sql.Connection;
 
@@ -31,8 +34,12 @@ public class DangKyKhachHangActivity extends AppCompatActivity {
     private EditText edt_matkhau_khachhang, edt_sodienthoai_khachhang,edt_email_khachhang,edt_ten_khachhang;
     private ImageView showPasswordImageView;
     private Button btn_DangKy ;
+    private FirebaseAuth mAuth;
     private TextView tv_DaCoTaiKhoan;
     private boolean isPasswordVisible = false;
+    private ActivityResultLauncher<Intent> otpIntent;
+    String soDienThoai,email,matKhau,ten;
+
     ConnectionHelper connectionHelper = new ConnectionHelper();
     Connection connection;
     QuerySql_KhachHang querySql = new QuerySql_KhachHang();
@@ -43,6 +50,8 @@ public class DangKyKhachHangActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_dangky_khachhang);
+        taoIntent();
+        XacThuc xacthuc = XacThuc.getInstance(DangKyKhachHangActivity.this, otpIntent);
         //Anh Xa
         AnhXa();
         showPasswordImageView.setOnClickListener(new View.OnClickListener() {
@@ -66,61 +75,65 @@ public class DangKyKhachHangActivity extends AppCompatActivity {
             btn_DangKy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String soDienThoai = edt_sodienthoai_khachhang.getText().toString();
-                String email = edt_email_khachhang.getText().toString();
-                String matKhau = edt_matkhau_khachhang.getText().toString();
-                String ten = edt_ten_khachhang.getText().toString();
-                if(!isDinhDangSoDienThoai(soDienThoai) ){
+                 soDienThoai = edt_sodienthoai_khachhang.getText().toString();
+                 email = edt_email_khachhang.getText().toString();
+                 matKhau = edt_matkhau_khachhang.getText().toString();
+                 ten = edt_ten_khachhang.getText().toString();
+                if(!DinhDang.isDinhDangSoDienThoai(soDienThoai)){
                     edt_sodienthoai_khachhang.setError("Số điện thoại phải đủ 10 số");
                 }
-                else if(!isDinhDangEmail(email)){
+                else if(!DinhDang.isDinhDangEmail(email)){
                     edt_email_khachhang.setError("email phải đúng đinh dạng abc@...com");
                 }
-                else if(!isDinhDangMatKhau(matKhau)){
-                    edt_matkhau_khachhang.setError("Số điện thoại phải đủ 10 số");
+                else if(!DinhDang.isDinhDangMatKhau(matKhau)){
+                    edt_matkhau_khachhang.setError("Mật khẩu phải có ít nhất 1 kí tự đặc biệt và in hoa");
                 }
-                else if(!isDinhDangTen(ten)){
+                else if(!DinhDang.isDinhDangTen(ten)){
                     edt_ten_khachhang.setError("Tên không đúng định dạng");
                 }
                 else
                 {
-                    try{
-                        ActivityResultLauncher<Intent> otpIntent = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-                        result -> {
-                           if (result.getResultCode() == DangKyKhachHangActivity.RESULT_OK)
-                           {
-                               Intent data = result.getData();
-                               if(data!=null&&data.getBooleanExtra("kq",false)==true)
-                               {
-                                querySql.sp_insert_TaiKhoan(soDienThoai,ten,matKhau,role,null, DangKyKhachHangActivity.this);
-                                Intent intent = new Intent(DangKyKhachHangActivity.this, DangNhapActivity.class);
-                                startActivity(intent);
-                               }
-                               else
-                               {
-                                   Toast.makeText(this, "Xác thực thất bại", Toast.LENGTH_SHORT).show();
-                               }
-                           }
-                        });
-                    }catch (Exception e)
-                    {
-                        Log.e(TAG, e.getMessage(), null);
-                    }
-
+                    String sdt = DinhDang.dinhDangSDT(soDienThoai);
+                    xacthuc.guiYeuCauOTP(sdt);
                 }
             }
-        });
+            });
 
         tv_DaCoTaiKhoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DangKyKhachHangActivity.this, DangNhapActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
 
 
     }
+    void taoIntent()
+    {
+        otpIntent = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),rs->{
+            if (rs.getResultCode() == RESULT_OK)
+            {
+                Intent data = rs.getData();
+                if(data!=null&&data.getBooleanExtra("kq",false)==true)
+                {
+                    try {
+                        querySql.sp_insert_TaiKhoan(soDienThoai, ten, matKhau,role, null,DangKyKhachHangActivity.this);
+                        Toast.makeText(DangKyKhachHangActivity.this,"Dang ky thanh cong",Toast.LENGTH_SHORT);
+                        finish();
+                    } catch (SQLException e) {
+                        Toast.makeText(DangKyKhachHangActivity.this,"LOI KHI DANG KY TAI KHOAN",Toast.LENGTH_SHORT);
+                        Log.e(TAG, "Lỗi khi đăng ký tài khoản: " + e.getMessage());
+                    }
+                }
+                else
+                {
+                    Toast.makeText(DangKyKhachHangActivity.this,"Xac thuc OTP khong thanh cong",Toast.LENGTH_SHORT);
+                }
+            }
+        });//
+
+    }
+
     //Anh Xa
     void AnhXa()
     {
@@ -133,27 +146,4 @@ public class DangKyKhachHangActivity extends AppCompatActivity {
         tv_DaCoTaiKhoan= findViewById(R.id.tv_DaCoTaiKhoan);
 
     }
-
-    //Kiem Tra Dinh Dang
-    public boolean isDinhDangSoDienThoai(String phoneNumber) {
-        // Số điện thoại phải có 10 chữ số
-        String regex = "^[0-9]{10}$";
-        return phoneNumber.matches(regex);
-    }
-    public boolean isDinhDangEmail(String email) {
-        String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
-        return email.matches(regex);
-    }
-    public boolean isDinhDangMatKhau(String password) {
-        // Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt
-        String regex = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[@#$%^&+=]).{8,}$";
-        return password.matches(regex);
-    }
-    public boolean isDinhDangTen(String name) {
-        // Biểu thức chính quy để kiểm tra tên chỉ chứa chữ cái, khoảng trắng và dấu gạch ngang
-        String regex = "^[\\p{L} .'-]+$";
-        return name.matches(regex);
-    }
-
-
 }
