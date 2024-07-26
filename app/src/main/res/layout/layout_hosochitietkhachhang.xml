@@ -6,7 +6,7 @@
 
     <!-- Nút Back -->
     <ImageButton
-        android:id="@+id/btn_back"
+        android:id="@+id/btn_back_hosokh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/baseline_arrow_back_24"
@@ -21,7 +21,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="16dp"
-        android:layout_toEndOf="@id/btn_back"
+        android:layout_toEndOf="@id/btn_back_hosokh"
         android:padding="10dp"
         android:text="Hồ sơ chi tiết tài khoản"
         android:textSize="20sp" />

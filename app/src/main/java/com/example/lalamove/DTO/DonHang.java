@@ -1,9 +1,11 @@
 package com.example.lalamove.DTO;
 
+import android.os.Parcel;
+
 import java.util.Date;
 
 public class DonHang {
-    public DonHang(int maDonHang, String soDienThoaiKhachHang, String soDienThoaiNguoiGui, String noiNhan, String soDienThoaiNguoiNhan, String noiGiao, Date thoiGianDatHang, String maPhuongTien, int giaTien) {
+    public DonHang(int maDonHang, String soDienThoaiKhachHang, String soDienThoaiNguoiGui, String noiNhan, String soDienThoaiNguoiNhan, String noiGiao, Date thoiGianDatHang, String maPhuongTien, int giaTien,String tenPhuongTien,String trangThai,String soDienThoaiTaiXe) {
         this.maDonHang = maDonHang;
         this.soDienThoaiKhachHang = soDienThoaiKhachHang;
         this.soDienThoaiNguoiGui = soDienThoaiNguoiGui;
@@ -13,6 +15,9 @@ public class DonHang {
         this.thoiGianDatHang = thoiGianDatHang;
         this.maPhuongTien = maPhuongTien;
         this.giaTien = giaTien;
+        this.tenphuongtien = tenPhuongTien;
+        this.trangthaidonhang = trangThai;
+        this.soDienThoaiTaiXe = soDienThoaiTaiXe;
     }
 
     private int maDonHang;
@@ -22,6 +27,38 @@ public class DonHang {
     private String soDienThoaiNguoiNhan;
     private String noiGiao ;
     private Date thoiGianDatHang;
+    private String tenphuongtien;
+
+    public String getSoDienThoaiTaiXe() {
+        return soDienThoaiTaiXe;
+    }
+
+    public void setSoDienThoaiTaiXe(String soDienThoaiTaiXe) {
+        this.soDienThoaiTaiXe = soDienThoaiTaiXe;
+    }
+
+    private String soDienThoaiTaiXe;
+
+    public String getTrangthaidonhang() {
+        return trangthaidonhang;
+    }
+
+    public void setTrangthaidonhang(String trangthaidonhang) {
+        this.trangthaidonhang = trangthaidonhang;
+    }
+
+    private String trangthaidonhang;
+
+    public String getTenphuongtien() {
+        return tenphuongtien;
+    }
+
+    public void setTenphuongtien(String tenphuongtien) {
+        this.tenphuongtien = tenphuongtien;
+    }
+
+
+
 
     public int getMaDonHang() {
         return maDonHang;
@@ -97,4 +134,8 @@ public class DonHang {
 
     private String maPhuongTien;
     private int giaTien;
+    // Constructor cho Parcelable
+    protected DonHang(Parcel in) {
+        // Đọc các thuộc tính từ Parcel
+    }
 }

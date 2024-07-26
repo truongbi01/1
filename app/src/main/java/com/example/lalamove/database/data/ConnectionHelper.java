@@ -13,6 +13,7 @@ public class ConnectionHelper {
 
     public Connection connectionClass() {
 
+
         ip = "192.168.1.3";
         database = "Lalamove";
         username = "sa";

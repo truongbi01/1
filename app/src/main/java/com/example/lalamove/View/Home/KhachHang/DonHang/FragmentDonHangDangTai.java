@@ -6,11 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,13 +18,13 @@ import com.example.lalamove.R;
 import com.example.lalamove.View.model.TableDonDatGiaoHang.QuerySql_DonDatGiaoHang;
 
 import java.util.List;
-import java.util.Objects;
 
-public class FragmentDonHangDangTai extends Fragment {
+public class FragmentDonHangDangTai extends Fragment implements DonHangDangTaiAdapter.onXemChiTietClickListener {
     private ListView lv_DonHang_DangTai;
     private DonHangDangTaiAdapter adapter;
     private SharedPreferences sharedPreferences;
-    private String trangthai = "Chờ nhận hàng";
+    private String trangthai1 = "Chờ nhận hàng";
+    private String trangthai2 = "Đang giao";
     private LinearLayout ln_hienthi_DangTai;
     int size = 0;
 
@@ -56,13 +53,14 @@ public class FragmentDonHangDangTai extends Fragment {
         ln_hienthi_DangTai= v.findViewById(R.id.ln_hienthi_DangTai);
         lv_DonHang_DangTai = v.findViewById(R.id.lv_DonHang_DangTai);
         QuerySql_DonDatGiaoHang querySql = new QuerySql_DonDatGiaoHang();
-        querySql.getDataAll(getContext(), lv_DonHang_DangTai, this::setAdapter, soDienThoai,trangthai);
+        querySql.getDataAll2(getContext(), lv_DonHang_DangTai, this::setAdapter, soDienThoai,trangthai1,trangthai2);
 
     }
 
     private void setAdapter(List<DonHang> listDonHang) {
         if (getContext() != null) {
             adapter = new DonHangDangTaiAdapter(getContext(), R.layout.layout_list_donhang, listDonHang);
+            adapter.setOnNhanDonClickListener(this);
             lv_DonHang_DangTai.setAdapter(adapter);
             size = listDonHang.size();
             adapter.notifyDataSetChanged(); // Thêm dòng này
@@ -70,4 +68,10 @@ public class FragmentDonHangDangTai extends Fragment {
         }
 
     }
+
+    @Override
+    public void onXemChiTietClick(DonHang donHang) {
+
+    }
+
 }

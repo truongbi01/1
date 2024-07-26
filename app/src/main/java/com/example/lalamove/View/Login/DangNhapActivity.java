@@ -1,5 +1,6 @@
 package com.example.lalamove.View.Login;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
@@ -8,15 +9,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.content.Intent;
-import androidx.appcompat.app.AppCompatActivity;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.lalamove.R;
 import com.example.lalamove.View.Home.KhachHang.DangKyKhachHangActivity;
 import com.example.lalamove.View.Home.TaiXe.DangKyTaiXeActivity;
 import com.example.lalamove.View.model.TableKhachHang.QuerySql_KhachHang;
+import com.example.lalamove.View.model.XacThucvaDinhDang.DinhDang;
 
 public class DangNhapActivity extends AppCompatActivity {
 
@@ -33,28 +35,26 @@ public class DangNhapActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_dangnhap);
-
         // Khởi tạo SharedPreferences
         sharedPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
         sharedPreferences2 = getSharedPreferences("ThongTinDangNhap", MODE_PRIVATE);
         editor = sharedPreferences2.edit();
         // Ánh xạ
         AnhXa();
-
         // Xử lý hành động đăng nhập
         btn_DangNhap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String soDienThoai = edt_sodienthoai_dangnhap.getText().toString();
                 String matkhau = edt_matkhau.getText().toString();
-                if (!isDinhDangSoDienThoai(soDienThoai)) {
+                if (!DinhDang.isDinhDangSoDienThoai(soDienThoai)) {
                     edt_sodienthoai_dangnhap.setError("Số điện thoại phải 10 số");
                 } else {
                     long lockTime = sharedPreferences.getLong("lockTime", 0);
                     if (System.currentTimeMillis() < lockTime) {
-                        Toast.makeText(DangNhapActivity.this, "Tài khoản bị khóa. Vui lòng thử lại sau." , Toast.LENGTH_SHORT).show();
+                       Toast.makeText(DangNhapActivity.this, "Tài khoản bị khóa. Vui lòng thử lại sau." , Toast.LENGTH_SHORT).show();
                         return;
-                    }
+                   }
                     querySql = new QuerySql_KhachHang();
                     querySql.sp_search_taikhoan(soDienThoai, matkhau, DangNhapActivity.this);
                     editor.putString("sodienthoai",soDienThoai);
@@ -99,7 +99,7 @@ public class DangNhapActivity extends AppCompatActivity {
         tv_QuenMatKhau.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DangNhapActivity.this, ForgotPasswordActivity.class);
+                Intent intent = new Intent(DangNhapActivity.this, QuenmkActivity.class);
                 startActivity(intent);
             }
         });
@@ -115,9 +115,5 @@ public class DangNhapActivity extends AppCompatActivity {
         tv_dangkylamtaixe = findViewById(R.id.tv_DangNhap_DangKy_TaiXe);
     }
 
-    public boolean isDinhDangSoDienThoai(String phoneNumber) {
-        // Số điện thoại phải có 10 chữ số
-        String regex = "^[0-9]{10}$";
-        return phoneNumber.matches(regex);
-    }
+
 }

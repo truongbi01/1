@@ -1,30 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission android:name="android.permission.INTERNET"/>
+    xmlns:tools="http://schemas.android.com/tools" >
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <meta-data
+        android:name="firebase_performance_logcat_enabled"
+        android:value="true" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:label=""
+        android:label="Lalamove"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Lalamove"
-        tools:targetApi="31">
-
-        <activity android:name=".View.BatDau.GioiThieu" android:exported="false">
-
+        tools:targetApi="31" >
+        <activity
+            android:name=".View.Login.XacNhanOTPActivity"
+            android:exported="false"
+            android:label="@string/title_activity_xac_nhan_otpactivity"
+           />
+        <activity
+            android:name=".View.BatDau.GioiThieu"
+            android:exported="false" >
         </activity>
-        <activity android:name=".View.Login.DangNhapActivity" android:exported="true">
+        <activity
+            android:name=".View.Login.DangNhapActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".View.Home.TaiXe.DonHangActivity" android:exported="false">
+        <activity android:name=".View.Home.TaiXe.DonHang.DonHangActivity" android:exported="false">
 
         </activity>
 
@@ -33,28 +43,36 @@
 
 
         </activity>
-        <activity android:name=".View.Login.ForgotPasswordActivity">
-        </activity>
         <activity android:name=".View.Home.KhachHang.Home_KhachHang" android:exported="true">
 
         </activity>
-        <activity android:name=".View.Home.KhachHang.BuocTiepTheoActivity">
+        <activity android:name=".View.Home.KhachHang.BuocTiepTheoActivity" android:exported="false">
 
         </activity>
-        <activity android:name=".View.Home.NhanVienCongTy.Home_QuanLy_Activity" android:exported="false">
-
+        <activity android:name=".View.Home.TaiXe.DangKyTaiXeActivity" >
+         </activity>
+        <activity android:name=".View.Login.QuenmkActivity" >
         </activity>
-        <activity android:name=".View.Home.TaiXe.TrangChuTaiXeActivity" android:exported="false">
 
+        <activity
+            android:name=".View.Home.NhanVienCongTy.Home_QuanLy_Activity"
+            android:exported="false" >
         </activity>
-        <activity android:name=".View.Home.KhachHang.BoSungChiTietActvity" android:exported="false">
-
+        <activity
+            android:name=".View.Home.TaiXe.TrangChuTaiXeActivity"
+            android:exported="false" >
         </activity>
-        <activity android:name=".View.Home.KhachHang.GhiChuChoTaiXeActivity" android:exported="false">
-
+        <activity
+            android:name=".View.Home.KhachHang.BoSungChiTietActvity"
+            android:exported="false" >
         </activity>
-        <activity android:name=".View.Home.KhachHang.DonHang.DonHangActivity" android:exported="true">
-
+        <activity
+            android:name=".View.Home.KhachHang.GhiChuChoTaiXeActivity"
+            android:exported="false" >
+        </activity>
+        <activity
+            android:name=".View.Home.KhachHang.DonHang.DonHangActivity"
+            android:exported="false" >
         </activity>
 
         <activity android:name=".View.Home.KhachHang.TrungTamTroGiupActivity" android:exported="false">
@@ -74,7 +92,9 @@
         <activity android:name=".View.Home.NhanVienCongTy.TrangChuQuanLiNhanSuActivity" android:exported="false">
 
         </activity>
+        <activity android:name=".View.Home.TaiXe.DonHang.ChiTietDonHangActivity" android:exported="false">
 
+        </activity>
     </application>
 
 </manifest>

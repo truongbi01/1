@@ -22,12 +22,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.example.lalamove.ListLoaiXe.VehicleAdapter;
 import com.example.lalamove.ListLoaiXe.PhuongTien;
 import com.example.lalamove.View.Home.KhachHang.DonHang.DonHangActivity;
 import com.example.lalamove.View.model.TableLoaiPhuongTien.QuerySql;
+
+import com.example.lalamove.ListLoaiXe.VehicleAdapter;
 import com.example.lalamove.R;
 import com.example.lalamove.View.Login.DangNhapActivity;
+import com.example.lalamove.View.model.TableLoaiPhuongTien.QuerySql;
 import com.example.lalamove.View.model.TinhKhoangCach;
 import com.google.android.material.navigation.NavigationView;
 
@@ -83,7 +85,11 @@ public class Home_KhachHang extends AppCompatActivity {
                     ChuyenTrang(Home_KhachHang.this, TrungTamTroGiupActivity.class);
                     return true;
                 } else if (menuID == R.id.nav_logout) {
-                    ChuyenTrang(Home_KhachHang.this, DangNhapActivity.class);
+//                    ChuyenTrang(Home_KhachHang.this, DangNhapActivity.class);
+                    Intent intent = new Intent(Home_KhachHang.this, DangNhapActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
                     return true;
                 } else
                     return true;

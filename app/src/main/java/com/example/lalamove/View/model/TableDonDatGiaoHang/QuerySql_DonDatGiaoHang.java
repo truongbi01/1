@@ -3,26 +3,21 @@ package com.example.lalamove.View.model.TableDonDatGiaoHang;
 import static android.content.ContentValues.TAG;
 
 import android.content.Context;
-import android.os.Looper;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.lalamove.DTO.DonHang;
-import com.example.lalamove.R;
 import com.example.lalamove.database.data.ConnectionHelper;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.function.Consumer;
-import java.util.logging.Handler;
 
 public class QuerySql_DonDatGiaoHang {
     ConnectionHelper connectionHelper ;
@@ -74,6 +69,57 @@ public class QuerySql_DonDatGiaoHang {
         }
     }
 
+    public void getDataAll2(Context context, ListView lvDonHang, Consumer<List<DonHang>> callback, String sodienthoai,String trangthai1 , String trangthai2) {
+        List<DonHang> listDonHang = new ArrayList<>();
+        try {
+            connectionHelper = new ConnectionHelper();
+            Connection con = connectionHelper.connectionClass();
+            if (con != null) {
+                String query = "SELECT ddgh.MaDonHang, ddgh.SoDienThoaiKhachHang, ddgh.SoDienThoaiNguoiGui, " +
+                        "ddgh.NoiNhan, ddgh.SoDienThoaiguoiGiao, ddgh.NoiGiao, " +
+                        "ddgh.ThoiGianDatHang, ddgh.MaPhuongTien, ctdg.GiaTien, ddgh.TrangThai, " +
+                        "lpt.tenphuongtien, ctdg.sodienthoaitaixe " +
+                        "FROM DonDatGiaoHang ddgh " +
+                        "INNER JOIN ChiTietDonGiao ctdg ON ddgh.MaDonHang = ctdg.MaDonHang " +
+                        "INNER JOIN LoaiPhuongTien lpt ON ddgh.maphuongtien = lpt.maphuongtien " +
+                        "WHERE (ddgh.TrangThai = ? OR ddgh.TrangThai = ?) AND ddgh.SoDienThoaiKhachHang = ?";
+
+                PreparedStatement preparedStatement = con.prepareStatement(query);
+                preparedStatement.setString(1,trangthai1);
+                preparedStatement.setString(2,trangthai2);
+                preparedStatement.setString(3, sodienthoai);
+
+                ResultSet rs = preparedStatement.executeQuery();
+
+                while (rs.next()) {
+                    int maDonHang = rs.getInt("MaDonHang");
+                    String soDienThoaiKhachHang = rs.getString("SoDienThoaiKhachHang");
+                    String soDienThoaiNguoiGui = rs.getString("SoDienThoaiNguoiGui");
+                    String noiNhan = rs.getString("NoiNhan");
+                    String soDienThoaiNguoiNhan = rs.getString("SoDienThoaiguoiGiao");
+                    String noiGiao = rs.getString("NoiGiao");
+                    Date thoiGianDatHang = rs.getTimestamp("ThoiGianDatHang");
+                    String maPhuongTien = rs.getString("MaPhuongTien");
+                    String tenPhuongTien = rs.getString("TenPhuongTien");
+                    int giaTien = rs.getInt("GiaTien");
+                    String trangThai = rs.getString("TrangThai");
+                    String soDienThoaiTaiXe = rs.getString("sodienthoaitaixe");
+
+                    DonHang donHang = new DonHang(maDonHang, soDienThoaiKhachHang, soDienThoaiNguoiGui, noiNhan,
+                            soDienThoaiNguoiNhan, noiGiao, thoiGianDatHang, maPhuongTien, giaTien,tenPhuongTien,trangThai,soDienThoaiTaiXe);
+                    listDonHang.add(donHang);
+                }
+                Log.d("QuerySql_DonDatGiaoHang", "Số lượng đơn hàng: " + listDonHang.size());
+                callback.accept(listDonHang);
+
+            } else {
+                Toast.makeText(context, "Có lỗi xảy ra, thử lại sau.", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "Error in getDataAll: " + e.getMessage(), e);
+            Toast.makeText(context, "Có lỗi xảy ra: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
     public void getDataAll(Context context, ListView lvDonHang, Consumer<List<DonHang>> callback, String sodienthoai,String trangthai) {
         List<DonHang> listDonHang = new ArrayList<>();
         try {
@@ -82,10 +128,11 @@ public class QuerySql_DonDatGiaoHang {
             if (con != null) {
                 String query = "SELECT ddgh.MaDonHang, ddgh.SoDienThoaiKhachHang, ddgh.SoDienThoaiNguoiGui, " +
                         "ddgh.NoiNhan, ddgh.SoDienThoaiguoiGiao, ddgh.NoiGiao, " +
-                        "ddgh.ThoiGianDatHang, ddgh.MaPhuongTien, ctdg.GiaTien, ddgh.TrangThai " +
+                        "ddgh.ThoiGianDatHang, ddgh.MaPhuongTien, ctdg.GiaTien, ddgh.TrangThai ,lpt.tenphuongtien , ctdg.sodienthoaitaixe " +
                         "FROM DonDatGiaoHang ddgh " +
                         "INNER JOIN ChiTietDonGiao ctdg ON ddgh.MaDonHang = ctdg.MaDonHang " +
-                        "WHERE ddgh.TrangThai = ? AND ddgh.SoDienThoaiKhachHang = ?";
+                        "Inner Join LoaiPhuongTien lpt ON  ddgh.maphuongtien = lpt.maphuongtien " +
+                        "WHERE  ddgh.TrangThai = ?  AND ddgh.SoDienThoaiKhachHang = ?";
 
                 PreparedStatement preparedStatement = con.prepareStatement(query);
                 preparedStatement.setString(1,trangthai);
@@ -101,10 +148,13 @@ public class QuerySql_DonDatGiaoHang {
                     String noiGiao = rs.getString("NoiGiao");
                     Date thoiGianDatHang = rs.getTimestamp("ThoiGianDatHang");
                     String maPhuongTien = rs.getString("MaPhuongTien");
+                    String tenPhuongTien = rs.getString("TenPhuongTien");
                     int giaTien = rs.getInt("GiaTien");
+                    String trangThai = rs.getString("TrangThai");
+                    String soDienThoaiTaixe = rs.getString("sodienthoaitaixe");
 
                     DonHang donHang = new DonHang(maDonHang, soDienThoaiKhachHang, soDienThoaiNguoiGui, noiNhan,
-                            soDienThoaiNguoiNhan, noiGiao, thoiGianDatHang, maPhuongTien, giaTien);
+                            soDienThoaiNguoiNhan, noiGiao, thoiGianDatHang, maPhuongTien, giaTien,tenPhuongTien,trangThai,soDienThoaiTaixe);
                     listDonHang.add(donHang);
                 }
                 Log.d("QuerySql_DonDatGiaoHang", "Số lượng đơn hàng: " + listDonHang.size());
@@ -117,6 +167,82 @@ public class QuerySql_DonDatGiaoHang {
             Log.e(TAG, "Error in getDataAll: " + e.getMessage(), e);
             Toast.makeText(context, "Có lỗi xảy ra: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
+    }
+    public void getDonHangChuaNhanDon(Context context, ListView lvDonHang, Consumer<List<DonHang>> callback, String maxe,String sodienthoaitaixe,String trangthai) {
+        List<DonHang> listDonHang = new ArrayList<>();
+        try {
+            connectionHelper = new ConnectionHelper();
+            Connection con = connectionHelper.connectionClass();
+            if (con != null) {
+                String query = "SELECT *" +
+                        "FROM DonDatGiaoHang ddgh " +
+                        "INNER JOIN ChiTietDonGiao ctdg ON ddgh.MaDonHang = ctdg.MaDonHang " +
+                        "Inner Join LoaiPhuongTien lpt ON  ddgh.maphuongtien = lpt.maphuongtien " +
+                        "Inner Join TaiKhoanTaiXe tktx ON lpt.maphuongtien = tktx.maphuongtien " +
+                        "WHERE ddgh.TrangThai = ? AND tktx.maphuongtien  = ? AND tktx.sodienthoaitaixe = ?";
+
+                PreparedStatement preparedStatement = con.prepareStatement(query);
+                preparedStatement.setString(1,trangthai);
+                preparedStatement.setString(2, maxe);
+                preparedStatement.setString(3, sodienthoaitaixe);
+
+                ResultSet rs = preparedStatement.executeQuery();
+
+                while (rs.next()) {
+                    int maDonHang = rs.getInt("MaDonHang");
+                    String soDienThoaiKhachHang = rs.getString("SoDienThoaiKhachHang");
+                    String soDienThoaiNguoiGui = rs.getString("SoDienThoaiNguoiGui");
+                    String noiNhan = rs.getString("NoiNhan");
+                    String soDienThoaiNguoiNhan = rs.getString("SoDienThoaiguoiGiao");
+                    String noiGiao = rs.getString("NoiGiao");
+                    Date thoiGianDatHang = rs.getTimestamp("ThoiGianDatHang");
+                    String maPhuongTien = rs.getString("MaPhuongTien");
+                    String tenPhuongTien = rs.getString("TenPhuongTien");
+                    String trangThai = rs.getString("TrangThai");
+                    int giaTien = rs.getInt("GiaTien");
+                    String soDienThoaiTaiXe = rs.getString("sodienthoaitaixe");
+
+                    DonHang donHang = new DonHang(maDonHang, soDienThoaiKhachHang, soDienThoaiNguoiGui, noiNhan,
+                            soDienThoaiNguoiNhan, noiGiao, thoiGianDatHang, maPhuongTien, giaTien,tenPhuongTien,trangThai,soDienThoaiTaiXe);
+                    listDonHang.add(donHang);
+                }
+                Log.d("QuerySql_DonDatGiaoHang", "Số lượng đơn hàng: " + listDonHang.size());
+                callback.accept(listDonHang);
+
+            } else {
+                Toast.makeText(context, "Có lỗi xảy ra, thử lại sau.", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "Error in getDataAll: " + e.getMessage(), e);
+            Toast.makeText(context, "Có lỗi xảy ra: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+    public String getTrangThai(Context context,String dieukien ,Object maDonHang) {
+       String trangThai ="";
+        try {
+            connectionHelper = new ConnectionHelper();
+            Connection con = connectionHelper.connectionClass();
+            if (con != null) {
+                String query = "SELECT trangthai" +
+                        "FROM DonDatGiaoHang " +
+                        "WHERE "+ dieukien +"  = ?";
+
+                PreparedStatement preparedStatement = con.prepareStatement(query);
+                preparedStatement.setObject(1,maDonHang);
+                ResultSet rs = preparedStatement.executeQuery();
+
+                if (rs.next()) {
+                  trangThai = rs.getString(1);
+                }
+                preparedStatement.close();
+                con.close();
+                rs.close();
+            } else {
+                Toast.makeText(context, "Có lỗi xảy ra, thử lại sau.", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception ignored) {
+        }
+        return trangThai;
     }
 
 
