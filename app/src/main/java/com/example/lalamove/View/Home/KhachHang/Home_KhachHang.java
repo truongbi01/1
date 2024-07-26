@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.lalamove.DTO.KhungGioCam;
 import com.example.lalamove.ListLoaiXe.PhuongTien;
 import com.example.lalamove.View.Home.KhachHang.DonHang.DonHangActivity;
 import com.example.lalamove.View.model.TableLoaiPhuongTien.QuerySql;
@@ -32,9 +33,10 @@ import com.example.lalamove.View.Login.DangNhapActivity;
 import com.example.lalamove.View.model.TableLoaiPhuongTien.QuerySql;
 import com.example.lalamove.View.model.TinhKhoangCach;
 import com.google.android.material.navigation.NavigationView;
-
+import com.example.lalamove.View.model.TableKhungGioCam.KhungGioCam_QuerySql;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Home_KhachHang extends AppCompatActivity {
     private DrawerLayout drawerLayout;
@@ -101,6 +103,8 @@ public class Home_KhachHang extends AppCompatActivity {
         ArrayList<PhuongTien> vehicles = new ArrayList<>(querySql.getDataPhuongTien());
 
         VehicleAdapter adapter = new VehicleAdapter(this, vehicles);
+        List<KhungGioCam> khungGioCamList = getKhungGioCamList();
+        adapter.setKhungGioCamList(khungGioCamList);
         vehicleList.setAdapter(adapter);
         adapter.setOnVehicleSelectedListener(new VehicleAdapter.OnVehicleSelectedListener() {
             @Override
@@ -177,6 +181,10 @@ public class Home_KhachHang extends AppCompatActivity {
                 checkAndShowPayment();
             }
         });
+    }
+    private List<KhungGioCam> getKhungGioCamList() {
+        KhungGioCam_QuerySql khungGioCamQuerySql = new KhungGioCam_QuerySql(this);
+        return khungGioCamQuerySql.getKhungGioCamList();
     }
 
     @SuppressLint("DefaultLocale")

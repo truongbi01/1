@@ -10,13 +10,20 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.lalamove.DTO.KhungGioCam;
 import com.example.lalamove.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 public class VehicleAdapter extends ArrayAdapter<PhuongTien> {
     private int selectedPosition = -1;
+    private List<KhungGioCam> khungGioCamList;
     private OnVehicleSelectedListener listener;
+
     public String getSelectedVehicleId() {
         if (selectedPosition != -1) {
             return getItem(selectedPosition).getMaPhuongTien();
@@ -38,6 +45,7 @@ public class VehicleAdapter extends ArrayAdapter<PhuongTien> {
 
     public VehicleAdapter(Context context, ArrayList<PhuongTien> vehicles) {
         super(context, 0, vehicles);
+        khungGioCamList = new ArrayList<>(); // Khởi tạo danh sách để tránh null
     }
 
     @SuppressLint("SetTextI18n")
@@ -48,6 +56,10 @@ public class VehicleAdapter extends ArrayAdapter<PhuongTien> {
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.vehicle_list_item, parent, false);
         }
+
+        // Kiểm tra xem phương tiện có bị cấm không
+        String gioHienTai = getCurrentTime();
+        boolean isBiCam = isPhuongTienBiCam(vehicle.getMaPhuongTien(), gioHienTai);
 
         ImageView vehicleIcon = convertView.findViewById(R.id.vehicle_icon);
         TextView vehicleName = convertView.findViewById(R.id.vehicle_name);
@@ -62,8 +74,7 @@ public class VehicleAdapter extends ArrayAdapter<PhuongTien> {
         } else if (vehicle.getTenPhuongTien().equals("Xe Tai Nho") || vehicle.getTenPhuongTien().equals("Xe Van Nho")) {
             vehicleIcon.setImageResource(R.drawable.ic_truck);
         } else {
-            // Đặt icon mặc định nếu loại phương tiện không khớp
-            vehicleIcon.setImageResource(R.drawable.ic_semi_truck); // Thay ic_default bằng tên drawable của bạn
+            vehicleIcon.setImageResource(R.drawable.ic_semi_truck);
         }
 
         // Quản lý hiển thị trạng thái đã chọn
@@ -75,17 +86,43 @@ public class VehicleAdapter extends ArrayAdapter<PhuongTien> {
             checkIcon.setChecked(false);
         }
 
+        // Đặt enable và alpha dựa trên trạng thái cấm
+        convertView.setEnabled(!isBiCam);
+        convertView.setAlpha(isBiCam ? 0.5f : 1.0f);
+
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectedPosition = (selectedPosition == position) ? -1 : position;
-                notifyDataSetChanged();
-                if (listener != null) {
-                    listener.onVehicleSelected(selectedPosition);
+                if (!isBiCam) {
+                    selectedPosition = (selectedPosition == position) ? -1 : position;
+                    notifyDataSetChanged();
+                    if (listener != null) {
+                        listener.onVehicleSelected(selectedPosition);
+                    }
                 }
             }
         });
 
         return convertView;
+    }
+
+    public void setKhungGioCamList(List<KhungGioCam> khungGioCamList) {
+        this.khungGioCamList = khungGioCamList;
+    }
+
+    private boolean isPhuongTienBiCam(String maPhuongTien, String gioHienTai) {
+        for (KhungGioCam khungGio : khungGioCamList) {
+            if (gioHienTai.compareTo(khungGio.getGioBatDau()) >= 0 &&
+                    gioHienTai.compareTo(khungGio.getGioKetThuc()) <= 0 &&
+                    khungGio.getMaPhuongTienBiCam().contains(maPhuongTien)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private String getCurrentTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", Locale.getDefault());
+        return sdf.format(new Date());
     }
 }
