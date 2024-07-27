@@ -114,14 +114,14 @@ public class BuocTiepTheoActivity extends AppCompatActivity {
                     } else{
                         //Thêm dữ liệu đơn hàng vào database
                         QuerySql_DonDatGiaoHang querySqlDonDatGiaoHang = new QuerySql_DonDatGiaoHang();
-                        querySqlDonDatGiaoHang.sp_insert_DonDatGiaoHang_ChiTietDon(soDienThoaiKhachHang,sdtNguoiGui,noiNhan,sdtNguoiGui,noiGiao,thoiGianDatHang,maPhuongTien,ghiChu,soLuongThungHang,maLoaiHang,trangThai,tongTien,BuocTiepTheoActivity.this);
+                        querySqlDonDatGiaoHang.sp_insert_DonDatGiaoHang_ChiTietDon(soDienThoaiKhachHang,sdtNguoiGui,noiNhan,sdtNguoiNhan,noiGiao,thoiGianDatHang,maPhuongTien,ghiChu,soLuongThungHang,maLoaiHang,trangThai,tongTien,BuocTiepTheoActivity.this);
 
                         //Xóa dữ liệu lưu trữ trong Share Prefer
                         editor.clear();
                         editor.apply();
 
                         //Di chuyển tới trang đơn hàng
-                        Intent i = new Intent(BuocTiepTheoActivity.this, DonHangActivity.class);
+                        Intent i = new Intent(BuocTiepTheoActivity.this, Home_KhachHang.class);
                         startActivity(i);
                     }
                 }

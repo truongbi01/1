@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -78,17 +79,16 @@ public class DonHangDangTaiAdapter extends ArrayAdapter<DonHang> {
             tv_TenLoaiPhuongTien_ListDonHang.setText(donHang.getTenphuongtien());
             tv_GiaTien_ListDonHang.setText(String.format(Locale.getDefault(), "%,d đ", donHang.getGiaTien()));
         }
+        // OnClickListener for ln_item
         ln_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (onXemChiTietClick != null && donHang != null) {
                     onXemChiTietClick.onXemChiTietClick(donHang);
-                    if (donHang.getTrangthaidonhang().equals("Chờ nhận hàng")) {
-
-                    }else{
+                    if (!donHang.getTrangthaidonhang().equals("Chờ nhận hàng")) {
                         SharedPreferences sharedPreferences = context.getSharedPreferences("ChiTietDonHang", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("sodienthoaitaixe",donHang.getSoDienThoaiTaiXe());
+                        editor.putString("sodienthoaitaixe", donHang.getSoDienThoaiTaiXe());
                         editor.putString("trangthai", donHang.getTrangthaidonhang());
                         editor.putString("tenphuongtien", donHang.getTenphuongtien());
                         editor.putString("diachinhandon", donHang.getNoiNhan());
@@ -99,14 +99,14 @@ public class DonHangDangTaiAdapter extends ArrayAdapter<DonHang> {
                         editor.putInt("tongtien", donHang.getGiaTien());
                         editor.apply();
 
-                        // Start new activity
                         Intent intent = new Intent(context, ChiTietDonHangActivity.class);
+                        intent.putExtra("trangthai", donHang.getTrangthaidonhang()+"kh");
                         context.startActivity(intent);
                     }
-
                 }
             }
         });
+
 
 
 

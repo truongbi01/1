@@ -53,7 +53,7 @@ public class DonHangActivity extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         adapter.addFragment(new FragmentDonHangDangTai(), "Đang tải");
         adapter.addFragment(new FragmentDonHangHoanThanh(), "Hoàn Thành");
-        adapter.addFragment(new FragmentDaHuy(), "Đã hủy");
+        adapter.addFragment(new FragmentDonHangDaHuy(), "Đã hủy");
         viewPager.setAdapter(adapter);
     }
 }

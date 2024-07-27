@@ -21,8 +21,6 @@ import java.util.List;
 
 public class FragmentDonHangDangTai extends Fragment implements DonHangDangTaiAdapter.onXemChiTietClickListener {
     private ListView lv_DonHang_DangTai;
-    private DonHangDangTaiAdapter adapter;
-    private SharedPreferences sharedPreferences;
     private String trangthai1 = "Chờ nhận hàng";
     private String trangthai2 = "Đang giao";
     private LinearLayout ln_hienthi_DangTai;
@@ -33,7 +31,7 @@ public class FragmentDonHangDangTai extends Fragment implements DonHangDangTaiAd
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dang_tai, container, false);
         //Lấy dữ liệu từ share
-        sharedPreferences = getActivity().getSharedPreferences("ThongTinDangNhap", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("ThongTinDangNhap", Context.MODE_PRIVATE);
         String soDienThoai = sharedPreferences.getString("sodienthoai","");
 
         //Anh Xa
@@ -53,13 +51,13 @@ public class FragmentDonHangDangTai extends Fragment implements DonHangDangTaiAd
         ln_hienthi_DangTai= v.findViewById(R.id.ln_hienthi_DangTai);
         lv_DonHang_DangTai = v.findViewById(R.id.lv_DonHang_DangTai);
         QuerySql_DonDatGiaoHang querySql = new QuerySql_DonDatGiaoHang();
-        querySql.getDataAll2(getContext(), lv_DonHang_DangTai, this::setAdapter, soDienThoai,trangthai1,trangthai2);
+        querySql.getDataAll2(requireContext(), lv_DonHang_DangTai, this::setAdapter, soDienThoai,trangthai1,trangthai2);
 
     }
 
     private void setAdapter(List<DonHang> listDonHang) {
-        if (getContext() != null) {
-            adapter = new DonHangDangTaiAdapter(getContext(), R.layout.layout_list_donhang, listDonHang);
+        if (getActivity()!= null) {
+            DonHangDangTaiAdapter adapter = new DonHangDangTaiAdapter(getActivity(), R.layout.layout_list_donhang, listDonHang);
             adapter.setOnNhanDonClickListener(this);
             lv_DonHang_DangTai.setAdapter(adapter);
             size = listDonHang.size();

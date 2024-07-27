@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
@@ -72,10 +73,9 @@ public class DonHangAdapter extends ArrayAdapter<DonHang> {
 
             // Get the status of the order
             QuerySql_DonDatGiaoHang querySqlDonDatGiaoHang = new QuerySql_DonDatGiaoHang();
-            String trangThai = querySqlDonDatGiaoHang.getTrangThai(context,"madonhang" ,donHang.getMaDonHang());
-
+            String trangThai = querySqlDonDatGiaoHang.getTrangThai(context,donHang.getMaDonHang());
             // Show/Hide buttons based on order status
-            if ("Chờ nhận hàng".equals(trangThai)) {
+            if ("Chờ nhận hàng".equals(trangThai)){
                 btn_NhanDon.setVisibility(View.VISIBLE);
                 btn_XemChiTiet.setVisibility(View.GONE);
             } else {
@@ -98,10 +98,11 @@ public class DonHangAdapter extends ArrayAdapter<DonHang> {
             btn_XemChiTiet.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (nhanDonClickListener != null && donHang != null) {
+                    if (nhanDonClickListener != null) {
                         nhanDonClickListener.onXemChiTietClick(donHang);
                         LuuChiTietDonhang(donHang);
                         Intent intent = new Intent(context, ChiTietDonHangActivity.class);
+                        intent.putExtra("trangthai",donHang.getTrangthaidonhang()+"tx");
                         context.startActivity(intent);
                     }
                 }
@@ -109,10 +110,6 @@ public class DonHangAdapter extends ArrayAdapter<DonHang> {
 
             convertView.setOnClickListener(v -> {
                 SharedPreferences sharedPreferences = context.getSharedPreferences("DonHangChiTiet", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                // editor.putString("t", donHang.getOrderId());
-                // Thêm các thông tin khác nếu cần
-                editor.apply();
             });
         }
 

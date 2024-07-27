@@ -24,7 +24,6 @@ import java.util.List;
 
 public class FragmentChoNhanDon extends Fragment implements DonHangAdapter.OnNhanDonClickListener {
     LinearLayout ln_hienthi_ChoNhanDon;
-    private DonHangAdapter adapter;
     ListView lv_DonHang_ChoNhanDon;
     private String trangthai = "Chờ nhận hàng";
     int size = 0;
@@ -44,13 +43,7 @@ public class FragmentChoNhanDon extends Fragment implements DonHangAdapter.OnNha
         //Ánh Xạ
         AnhXa(v, maPhuongTien, sodienthoai);
 
-        if (size <= 0) {
-            lv_DonHang_ChoNhanDon.setVisibility(View.GONE);
-            ln_hienthi_ChoNhanDon.setVisibility(View.VISIBLE);
-        } else {
-            lv_DonHang_ChoNhanDon.setVisibility(View.VISIBLE);
-            ln_hienthi_ChoNhanDon.setVisibility(View.GONE);
-        }
+
         return v;
     }
 
@@ -58,16 +51,23 @@ public class FragmentChoNhanDon extends Fragment implements DonHangAdapter.OnNha
         ln_hienthi_ChoNhanDon = v.findViewById(R.id.ln_hienthi_ChoNhanDon);
         lv_DonHang_ChoNhanDon = v.findViewById(R.id.lv_DonHang_ChoNhanDon);
         QuerySql_DonDatGiaoHang querySql = new QuerySql_DonDatGiaoHang();
-        querySql.getDonHangChuaNhanDon(getContext(), lv_DonHang_ChoNhanDon, this::setAdapter, maPhuongTien, sodienthoaitaixe, trangthai);
+        querySql.getDonHangChuaNhanDon(getActivity(), lv_DonHang_ChoNhanDon, this::setAdapter, maPhuongTien, sodienthoaitaixe, trangthai, "Đang giao");
     }
 
     private void setAdapter(List<DonHang> listDonHang) {
-        if (getContext() != null) {
-            adapter = new DonHangAdapter(getContext(), R.layout.layout_list_donhang_taixe, listDonHang);
+        if (getActivity() != null) {
+            DonHangAdapter adapter = new DonHangAdapter(getActivity(), R.layout.layout_list_donhang_taixe, listDonHang);
             adapter.setOnNhanDonClickListener(this); // Thiết lập listener cho adapter
             lv_DonHang_ChoNhanDon.setAdapter(adapter);
             size = listDonHang.size();
             adapter.notifyDataSetChanged();
+            if (size <= 0) {
+                lv_DonHang_ChoNhanDon.setVisibility(View.GONE);
+                ln_hienthi_ChoNhanDon.setVisibility(View.VISIBLE);
+            } else {
+                lv_DonHang_ChoNhanDon.setVisibility(View.VISIBLE);
+                ln_hienthi_ChoNhanDon.setVisibility(View.GONE);
+            }
         }
     }
 
