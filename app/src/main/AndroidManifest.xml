@@ -95,6 +95,9 @@
         <activity android:name=".View.Home.TaiXe.DonHang.ChiTietDonHangActivity" android:exported="false">
 
         </activity>
+        <activity android:name=".View.Home.TaiXe.TaiXeYeuThichActivity" android:exported="false">
+
+        </activity>
     </application>
 
 </manifest>
