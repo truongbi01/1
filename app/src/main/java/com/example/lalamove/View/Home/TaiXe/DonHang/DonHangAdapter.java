@@ -88,9 +88,6 @@ public class DonHangAdapter extends ArrayAdapter<DonHang> {
                 public void onClick(View v) {
                     if (nhanDonClickListener != null && donHang != null) {
                         nhanDonClickListener.onNhanDonClick(donHang);
-                        // Ẩn nút nhận đơn thay bằng xem chi tiết
-                        btn_NhanDon.setVisibility(View.GONE);
-                        btn_XemChiTiet.setVisibility(View.VISIBLE);
                     }
                 }
             });
