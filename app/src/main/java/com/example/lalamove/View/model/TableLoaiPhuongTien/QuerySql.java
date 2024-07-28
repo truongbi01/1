@@ -31,11 +31,12 @@ public class QuerySql {
 
                 while (rs.next()) {
                     // Đọc dữ liệu từ ResultSet
-                    String tenPhuongTien = rs.getString("tenphuongtien"); // Thay 'TenPhuongTien' bằng tên cột đúng
-                    int trongLuong = rs.getInt("trongtaitoida"); // Thay 'TrongLuong' bằng tên cột đúng
+                    String tenPhuongTien = rs.getString("tenphuongtien");
+                    int trongLuong = rs.getInt("trongtaitoida");
+                    String maphuongtien = rs.getString("maphuongtien");
 
                     // Tạo đối tượng PhuongTien và thêm vào danh sách
-                    PhuongTien phuongTien = new PhuongTien(tenPhuongTien, trongLuong);
+                    PhuongTien phuongTien = new PhuongTien(tenPhuongTien, trongLuong,maphuongtien);
                     listPhuongTien.add(phuongTien);
                 }
 

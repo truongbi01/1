@@ -15,12 +15,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.lalamove.R;
-import com.example.lalamove.View.Login.DangNhapActivity;
 import com.example.lalamove.View.model.TableLoaiPhuongTien.LoaiPhuongTien;
-import com.example.lalamove.View.model.TableTaiXe.TaiXe;
+import com.example.lalamove.View.model.TableTaiXe.TaiXeSQL;
+import com.example.lalamove.View.model.XacThucvaDinhDang.DinhDang;
+import com.example.lalamove.View.model.XacThucvaDinhDang.XacThuc;
 
 public class DangKyTaiXeActivity extends AppCompatActivity {
     private EditText edt_sodienthoai_TaiXe, edt_matkhau_TaiXe, edt_ten_TaiXe, edt_Bienso_vanchuyen;
@@ -30,29 +33,27 @@ public class DangKyTaiXeActivity extends AppCompatActivity {
     private String loaiTaiKhoan = "TaiXe";
     private boolean isPasswordVisible = false;
     private TextView tv_DaCoTaiKhoan_TaiXe ;
-
-    TaiXe taiXe;
+    private ActivityResultLauncher<Intent> otpIntent;
+    String soDienThoai,matKhau,ten,bienso,tenphuongtien,loaiphuongtien,maphuongtien;
+    TaiXeSQL taiXeSQL;
     LoaiPhuongTien loaiPhuongTien;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_dang_ky_tai_xe);
-
-        taiXe = new TaiXe();
+        taoIntent();
+        XacThuc xacthuc = XacThuc.getInstance(DangKyTaiXeActivity.this,otpIntent);
+        taiXeSQL = new TaiXeSQL();
         loaiPhuongTien = new LoaiPhuongTien();
-
         //AnhXa
         AnhXa();
-
         //tải dữ liệu phương tiện
         loadPhuongTienData();
-
         tv_DaCoTaiKhoan_TaiXe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DangKyTaiXeActivity.this, DangNhapActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
 
@@ -75,39 +76,55 @@ public class DangKyTaiXeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-                String soDienThoai = edt_sodienthoai_TaiXe.getText().toString();
-                String matKhau = edt_matkhau_TaiXe.getText().toString();
-                String ten =(edt_ten_TaiXe.getText().toString());
+               soDienThoai = edt_sodienthoai_TaiXe.getText().toString();
+                 matKhau = edt_matkhau_TaiXe.getText().toString();
+                 ten =(edt_ten_TaiXe.getText().toString());
                 ten = ten.trim().replaceAll("\\s+", " ");
-                String bienso = edt_Bienso_vanchuyen.getText().toString();
-                String tenphuongtien = spinner_phuongtien.getSelectedItem().toString();
-                String maphuongtien = loaiPhuongTien.getMaPhuongTien(tenphuongtien, DangKyTaiXeActivity.this);
+                 bienso = edt_Bienso_vanchuyen.getText().toString();
+                 tenphuongtien = spinner_phuongtien.getSelectedItem().toString();
+                 maphuongtien = loaiPhuongTien.getMaPhuongTien(tenphuongtien, DangKyTaiXeActivity.this);
 
                 // Validate input
-                if (!isDinhDangSoDienThoai(soDienThoai)) {
+                if (!DinhDang.isDinhDangSoDienThoai(soDienThoai)) {
                     edt_sodienthoai_TaiXe.setError("Số điện thoại phải đủ 10 số");
-                } else if (taiXe.isTaiKhoanTonTai(soDienThoai, DangKyTaiXeActivity.this)) {
+                } else if (taiXeSQL.isTaiKhoanTonTai(soDienThoai, DangKyTaiXeActivity.this)) {
                     edt_sodienthoai_TaiXe.setError("Số điện thoại đã được đăng ký");
-                } else if (!isDinhDangMatKhau(matKhau)) {
+                } else if (!DinhDang.isDinhDangMatKhau(matKhau)) {
                     edt_matkhau_TaiXe.setError("1 ký tự in hoa, và 1 số");
-                } else if (!isDinhDangTen(ten)) {
+                } else if (!DinhDang.isDinhDangTen(ten)) {
                     edt_ten_TaiXe.setError("Tên không đúng định dạng");
-                } else if (!isDinhDangBienSoXe(bienso)) {
+                } else if (!DinhDang.isDinhDangBienSoXe(bienso)) {
                     edt_Bienso_vanchuyen.setError("Biển số xe có 5 số");
                 } else {
-                    try {
-                        taiXe.sp_insert_TaiKhoanTaiXe(soDienThoai, ten, matKhau, loaiTaiKhoan, null, soDienThoai, bienso, maphuongtien, null, DangKyTaiXeActivity.this);
-                        Intent intent = new Intent(DangKyTaiXeActivity.this, DangNhapActivity.class);
-                        startActivity(intent);
-                    } catch (Exception e) {
-                        Log.e(TAG, "Lỗi khi đăng ký tài khoản: " + e.getMessage());
-                    }
+                    xacthuc.guiYeuCauOTP(DinhDang.dinhDangSDT(soDienThoai));
                 }
             }
         });
     }
-
+    void taoIntent()
+    {
+        otpIntent = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK)
+                    {
+                        Intent data = result.getData();
+                        if(data!=null&&data.getBooleanExtra("kq",false)==true)
+                        {
+                            try {
+                                taiXeSQL.sp_insert_TaiKhoanTaiXe(soDienThoai, ten, matKhau, loaiTaiKhoan, null, soDienThoai, bienso, maphuongtien, null, DangKyTaiXeActivity.this);
+                                Toast.makeText(DangKyTaiXeActivity.this,"Dang ky thanh cong",Toast.LENGTH_SHORT);
+                                finish();
+                            } catch (Exception e) {
+                                Log.e(TAG, "Lỗi khi đăng ký tài khoản: " + e.getMessage());
+                            }
+                        }
+                        else
+                        {
+                            Toast.makeText(DangKyTaiXeActivity.this,"Xac thuc OTP khong thanh cong",Toast.LENGTH_SHORT);
+                        }
+                    }
+                });//
+    }
     void AnhXa() {
         edt_sodienthoai_TaiXe = findViewById(R.id.edt_sodienthoai_TaiXe);
         edt_matkhau_TaiXe = findViewById(R.id.edt_matkhau_TaiXe);
@@ -122,35 +139,12 @@ public class DangKyTaiXeActivity extends AppCompatActivity {
     void loadPhuongTienData() {
         try {
             LoaiPhuongTien loaiPhuongTien = new LoaiPhuongTien(this, spinner_phuongtien);
-            loaiPhuongTien.loadData();
+            loaiPhuongTien.loadDataTenPhuongTien();
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(this, "Lỗi khi tải dữ liệu phương tiện: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
-    public boolean isDinhDangSoDienThoai(String phoneNumber) {
-        String regex = "^[0-9]{10}$";
-        return phoneNumber.matches(regex);
-    }
 
-    public boolean isDinhDangBienSoXe(String biensoxe) {
-        String regex = "^[0-9]{5}$";
-        return biensoxe.matches(regex);
-    }
-
-    public boolean isDinhDangEmail(String email) {
-        String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
-        return email.matches(regex);
-    }
-
-    public boolean isDinhDangMatKhau(String password) {
-        String regex = "^(?=.*[0-9])(?=.*[A-Z]).{8,}$";
-        return password.matches(regex);
-    }
-
-    public boolean isDinhDangTen(String name) {
-        String regex = "^[\\p{L} .'-]+$";
-        return name.matches(regex);
-    }
 }

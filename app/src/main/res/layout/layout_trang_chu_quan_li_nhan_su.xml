@@ -129,7 +129,7 @@
         </LinearLayout>
     </GridLayout>
     <TextView
-        android:id="@+id/bottom_left_text"
+        android:id="@+id/tv_TrangChuQuanLyNhanSu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="italic"

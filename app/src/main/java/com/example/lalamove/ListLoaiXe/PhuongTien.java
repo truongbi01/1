@@ -1,6 +1,9 @@
 package com.example.lalamove.ListLoaiXe;
 
 public class PhuongTien {
+    String tenPhuongTien;
+    int trongLuong;
+    private String maPhuongTien;
     public String getTenPhuongTien() {
         return tenPhuongTien;
     }
@@ -17,12 +20,18 @@ public class PhuongTien {
         this.trongLuong = trongLuong;
     }
 
-    String tenPhuongTien;
-    int trongLuong;
 
-    public PhuongTien(String tenPhuongTien, int trongLuong) {
+    public String getMaPhuongTien() {
+        return maPhuongTien;
+    }
+    public void setMaPhuongTien(String maPhuongTien) {
+        this.maPhuongTien = maPhuongTien;
+    }
+
+    public PhuongTien(String tenPhuongTien, int trongLuong,String maPhuongTien) {
         this.tenPhuongTien = tenPhuongTien;
         this.trongLuong = trongLuong;
+        this.maPhuongTien = maPhuongTien;
     }
 
     @Override

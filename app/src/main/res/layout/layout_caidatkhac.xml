@@ -105,12 +105,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Bảo mật"/>
+            android:text="Bảo mật"
+            android:layout_gravity="center"/>
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_Lessthan"/>
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_phai_25"/>
     </LinearLayout>
 
     <View
@@ -133,12 +134,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Bảng Giá Niêm Yết"/>
+            android:text="Bảng Giá Niêm Yết"
+            android:layout_gravity="center"/>
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_Lessthan"/>
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_phai_25"/>
     </LinearLayout>
 
     <View
@@ -161,12 +163,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Về Lalamove"/>
+            android:text="Về Lalamove"
+            android:layout_gravity="center"/>
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_Lessthan"/>
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_phai_25"
+            />
     </LinearLayout>
 
     <View
