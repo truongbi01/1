@@ -9,7 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.lalamove.R;
-import com.example.lalamove.View.model.TaiKhoanSQL;
+import com.example.lalamove.View.model.TableTaiKhoan.TaiKhoanSQL;
 
 public class ThongTinTK_KhachHang extends AppCompatActivity {
 
@@ -20,7 +20,7 @@ public class ThongTinTK_KhachHang extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_thongtintk_khachhang);
+        setContentView(R.layout.layout_hosochitietkhachhang);
 
         // Khởi tạo các view
         editTextTen = findViewById(R.id.Ten);
@@ -51,7 +51,7 @@ public class ThongTinTK_KhachHang extends AppCompatActivity {
 
     private void loadThongTinTaiKhoan() {
         // Đây là ví dụ, bạn cần thay thế giá trị của soDienThoai bằng giá trị thực tế
-        soDienThoai = "123456789"; // Hoặc lấy từ Intent hoặc SharedPreferences
+        soDienThoai = ""; // Hoặc lấy từ Intent hoặc SharedPreferences
 
         String loaiTaiKhoan = taiKhoanSQL.getLoaiTaiKhoan(soDienThoai, this);
 

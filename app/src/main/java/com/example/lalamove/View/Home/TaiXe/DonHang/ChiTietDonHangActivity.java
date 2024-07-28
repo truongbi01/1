@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +28,6 @@ import com.example.lalamove.View.model.TableTaiXeYeuThich.QuerySql;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
-import android.widget.RatingBar;
 
 public class ChiTietDonHangActivity extends AppCompatActivity {
 
@@ -186,6 +186,7 @@ public class ChiTietDonHangActivity extends AppCompatActivity {
         tv_ChiTietDonHang_SoSaoDanhGia.setText(String.format(Locale.getDefault(), "%d.0", diemDanhGia));
         tv_ChiTietDonHang_TenPhuongTien.setText(tenPhuongtien);
         tv_ChiTietDonHang_DiemNhan.setText(noiNhan);
+
         tv_ChiTietDonHang_DiemGiao.setText(noiGiao);
         tv_ChiTietDonHang_tongtien.setText(String.format(Locale.getDefault(), "%,d đ", giaTien));
     }
