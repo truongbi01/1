@@ -19,11 +19,7 @@
 
         </activity>
         <activity android:name=".View.Login.DangNhapActivity" android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity android:name=".View.Home.TaiXe.DonHangActivity" android:exported="false">
@@ -51,13 +47,13 @@
 
 
         </activity>
-        <activity android:name=".View.Home.NhanVienCongTy.Home_QuanLy_Activity" android:exported="false">
+        <activity android:name=".View.Home.NhanVienCongTy.Home_QuanLy_Activity" android:exported="true">
 
         </activity>
         <activity android:name=".View.Home.TaiXe.TrangChuTaiXeActivity" android:exported="false">
 
         </activity>
-        <activity android:name=".View.Home.TaiXe.DangKyTaiXeActivity" android:exported="false">
+        <activity android:name=".View.Home.TaiXe.DangKyTaiXeActivity" android:exported="true">
 
         </activity>
 
@@ -72,7 +68,15 @@
 
 
         </activity>
-        <activity android:name="XuLiDonPhanHoi.ChiTietXuLiDonActivity" android:exported="true"></activity>
+        <activity android:name="XuLiDonPhanHoi.ChiTietXuLiDonActivity" android:exported="false">
+
+        </activity>
+        <activity android:name=".View.Home.NhanVienCongTy.QuanLyTaiKhoan.QuanLiTaiKhoanActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

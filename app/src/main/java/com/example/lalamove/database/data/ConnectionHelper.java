@@ -12,7 +12,7 @@ public class ConnectionHelper {
     String username, password, ip, port, database;
 
     public Connection connectionClass() {
-        ip = "192.168.1.11";
+        ip = "192.168.1.3";
         database = "Lalamove";
         username = "sa";
         password = "123456";
@@ -28,7 +28,7 @@ public class ConnectionHelper {
             ConnectionURL = "jdbc:jtds:sqlserver://" + ip + ":" + port + ";" + "databasename=" + database + ";user=" + username + ";password=" + password + ";";
             connection = DriverManager.getConnection(ConnectionURL);
         } catch (Exception e) {
-            Log.e("ERROR", Objects.requireNonNull(e.getMessage()));
+            Log.e("ERROR", "Connection error: " + e.getMessage(), e);
         }
         return connection;
     }
