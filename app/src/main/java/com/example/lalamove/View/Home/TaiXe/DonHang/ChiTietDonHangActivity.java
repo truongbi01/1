@@ -165,7 +165,7 @@ public class ChiTietDonHangActivity extends AppCompatActivity {
         String trangThai = sharedPreferences2.getString("trangthai", "");
         String sdtNguoiNhan = sharedPreferences2.getString("sodienthoainguoinhan","");
         String sdtNguoiGui = sharedPreferences2.getString("sodienthoainguoigui","");
-
+        Toast.makeText(context,sodienthoaitaixe,Toast.LENGTH_SHORT).show();
         ChiTiet_QuerySql chiTietQuerySql = new ChiTiet_QuerySql(this);
         Timestamp thoiGianNhanHang = chiTietQuerySql.getThoiGianNhanDon(sodienthoaitaixe, maDonHang);
 

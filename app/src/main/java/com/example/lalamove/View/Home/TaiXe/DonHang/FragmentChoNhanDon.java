@@ -90,6 +90,19 @@ public class FragmentChoNhanDon extends Fragment implements DonHangAdapter.OnNha
 
         ChiTiet_QuerySql chiTietQuerySql = new ChiTiet_QuerySql(requireContext());
         chiTietQuerySql.CapNhatChiTietDonGiaoHang(sodienthoaitaixe, thoigiannhanhang, donHang.getMaDonHang());
+        reloadData();
+    }
+    private void reloadData() {
+        String sodienthoai = sharedPreferences.getString("sodienthoai", "");
+        TaiXe_QuerySql taiXeQuerySql = new TaiXe_QuerySql();
+        String maPhuongTien = taiXeQuerySql.getMaPhuongTien(sodienthoai, requireContext());
 
+        QuerySql_DonDatGiaoHang querySql = new QuerySql_DonDatGiaoHang();
+        querySql.getDonHangChuaNhanDon(getActivity(), lv_DonHang_ChoNhanDon, this::setAdapter, maPhuongTien, sodienthoai, trangthai, "Đang giao");
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        reloadData();
     }
 }

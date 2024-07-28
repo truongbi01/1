@@ -14,7 +14,7 @@ public class ConnectionHelper {
     public Connection connectionClass() {
 
 
-        ip = "192.168.1.3";
+        ip = "192.168.1.4";
         database = "Lalamove";
         username = "sa";
         password = "123456";

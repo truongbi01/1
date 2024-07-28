@@ -38,16 +38,14 @@ public class ChiTiet_QuerySql {
             int rowsAffected = preparedStatement.executeUpdate();
 
             if (rowsAffected > 0) {
-                Toast.makeText(context, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Nhận đơn", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(context, "Không có dữ liệu nào được cập nhật", Toast.LENGTH_SHORT).show();
             }
 
         } catch (SQLException e) {
-            Log.e(TAG, "Lỗi SQL khi cập nhật chi tiết đơn giao: " + e.getMessage());
+            Toast.makeText(context,e.getMessage(),Toast.LENGTH_SHORT).show();
 
-        } catch (Exception e) {
-            Log.e(TAG, "Lỗi khi cập nhật chi tiết đơn giao: " + e.getMessage());
         }
     }
     public Timestamp  getThoiGianNhanDon(String sodienthoai, int madonhang) {

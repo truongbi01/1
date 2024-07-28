@@ -40,13 +40,14 @@ public class BuocTiepTheoActivity extends AppCompatActivity {
         //Anh Xa
         AnhXa();
         //lấy dữ liệu trong luong đặt hàng
+        SharedPreferences sharedPreferences2 = this.getSharedPreferences("ThongTinDangNhap",MODE_PRIVATE);
+        String soDienThoaiKhachHang = sharedPreferences2.getString("sodienthoai","");
         SharedPreferences sharedPreferences = this.getSharedPreferences("LuongDatHang",MODE_PRIVATE);
         @SuppressLint("CommitPrefEdits") SharedPreferences.Editor  editor= sharedPreferences.edit();
 
         int tongTien = sharedPreferences.getInt("tongtien",0);
         String tenLoaiHangVanChuyen = sharedPreferences.getString("tenloaihangvanchuyen","");
         String ghiChu = sharedPreferences.getString("ghichuchotaixe","");
-        String soDienThoaiKhachHang = sharedPreferences.getString("sodienthoai","");
         String trangThai = "Chờ nhận hàng";
         String maLoaiHang = sharedPreferences.getString("maloaihangvanchuyen","");
         String noiNhan = sharedPreferences.getString("noinhan","");
