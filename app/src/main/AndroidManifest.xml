@@ -27,10 +27,10 @@
         <activity
             android:name=".View.Login.DangNhapActivity"
             android:exported="true" >
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity android:name=".View.Home.TaiXe.DonHang.DonHangActivity" android:exported="false">
@@ -91,17 +91,13 @@
         </activity>
         <activity android:name=".View.Home.NhanVienCongTy.TrangChuQuanLiNhanSuActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".View.Home.TaiXe.DonHang.ChiTietDonHangActivity" android:exported="false">
 
         </activity>
         <activity android:name=".View.Home.TaiXe.TaiXeYeuThichActivity" android:exported="false">
-
         </activity>
+        <activity android:name=".View.Home.NhanVienCongTy.QuanLyTaiKhoan.QuanLiTaiKhoanActivity"></activity>
         <activity android:name=".View.Home.KhachHang.ThongTinTK_KhachHang" />
         <activity android:name=".View.Home.TaiXe.ThongTinTK_TaiXe" />
     </application>

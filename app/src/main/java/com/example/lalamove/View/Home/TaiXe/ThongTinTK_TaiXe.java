@@ -1,133 +1,110 @@
 package com.example.lalamove.View.Home.TaiXe;
 
-import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.lalamove.R;
+import com.example.lalamove.View.model.TableTaiKhoan.TaiKhoanSQL;
 import com.example.lalamove.View.model.TableTaiXe.TaiXeSQL;
+import com.example.lalamove.View.model.XacThucvaDinhDang.DinhDang;
+
+import java.util.ArrayList;
 
 public class ThongTinTK_TaiXe extends AppCompatActivity {
 
     private static final String TAG = "ThongTinTK_TaiXe";
 
     private ImageButton btnBack;
-    private EditText edtName;
-    private EditText edtPhone;
-    private EditText edtChucVu;
-    private EditText edtDiemDanhGia;
-    private EditText edtMaPhuongTien;
-    private EditText edtBienSoPhuongTien;
-    private ImageView imgEditName;
-    private ImageView imgEditPhone;
-    private ImageView imgEditChucVu;
-    private ImageView imgEditMaPhuongTien;
-    private ImageView imgEditBienSoPhuongTien;
-
+    private EditText edt_tentk_tx,edt_sdt_tx,edt_diemdg,edt_loaipt,edt_biensopt,edt_mkcu,edt_mkmoi;
+    private Button btn_edit,btn_doimk;
     private TaiXeSQL taiXeSQL;
+    private TaiKhoanSQL taiKhoanSQL;
+    private SharedPreferences pref;
+    private String soDienThoai,mkcu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_hosochitiettaixe); // Tên file layout tương ứng
-
-        // Khởi tạo các thành phần UI
-        btnBack = findViewById(R.id.btn_back_hosotx);
-        edtName = findViewById(R.id.Ten);
-        edtPhone = findViewById(R.id.sdt);
-        edtChucVu = findViewById(R.id.chucvu_1);
-        edtDiemDanhGia = findViewById(R.id.diemdanhgia);
-        edtMaPhuongTien = findViewById(R.id.maphuongtien);
-        edtBienSoPhuongTien = findViewById(R.id.biensophuongtien);
-        imgEditName = findViewById(R.id.insert_name);
-        imgEditPhone = findViewById(R.id.insert_sdt);
-        imgEditChucVu = findViewById(R.id.insert_gmail);
-        imgEditMaPhuongTien = findViewById(R.id.insert_maphuongtien);
-        imgEditBienSoPhuongTien = findViewById(R.id.insert_biensophuongtien);
-
-        // Khởi tạo đối tượng TaiXeSQL
+        init();
         taiXeSQL = new TaiXeSQL();
-
+        taiKhoanSQL = new TaiKhoanSQL();
         // Xử lý sự kiện nhấn nút quay lại
         btnBack.setOnClickListener(v -> finish());
+        loadThongTinTaiKhoan();
+        btn_edit.setOnClickListener(c->{
+            updatetttk();
+        });
+        btn_doimk.setOnClickListener(c->{
+            doimk();
+        });
 
-        // Xử lý sự kiện nhấn nút sửa tên
-        imgEditName.setOnClickListener(v -> updateName());
-
-        // Xử lý sự kiện nhấn nút sửa số điện thoại
-        imgEditPhone.setOnClickListener(v -> updatePhone());
-
-        // Xử lý sự kiện nhấn nút sửa chức vụ
-        imgEditChucVu.setOnClickListener(v -> updateChucVu());
-
-        // Xử lý sự kiện nhấn nút sửa mã phương tiện
-        imgEditMaPhuongTien.setOnClickListener(v -> updateMaPhuongTien());
-
-        // Xử lý sự kiện nhấn nút sửa biển số phương tiện
-        imgEditBienSoPhuongTien.setOnClickListener(v -> updateBienSoPhuongTien());
     }
+    private void loadThongTinTaiKhoan() {
+        pref = this.getSharedPreferences("ThongTinDangNhap",MODE_PRIVATE);
+        soDienThoai = pref.getString("sodienthoai",""); // Hoặc lấy từ Intent hoặc SharedPreferences
 
-    private void updateName() {
-        String name = edtName.getText().toString().trim();
-        if (!name.isEmpty()) {
-            // Thực hiện cập nhật tên
-            // Đây có thể là một phương thức cập nhật dữ liệu vào cơ sở dữ liệu
-            // Ví dụ: taiXeSQL.updateName(name, this);
-            Toast.makeText(this, "Tên đã được cập nhật", Toast.LENGTH_SHORT).show();
+        String loaiTaiKhoan = taiKhoanSQL.getLoaiTaiKhoan(soDienThoai, this);
+
+        // Nếu tài khoản tồn tại, lấy thông tin và hiển thị lên giao diện
+        if (!loaiTaiKhoan.isEmpty()) {
+            ArrayList<String> kq = taiKhoanSQL.sp_select_taikhoan(soDienThoai,this);
+            // Ví dụ: Lấy thông tin từ cơ sở dữ liệu và hiển thị lên EditText
+            // Bạn cần thêm các phương thức để lấy tên, số điện thoại và Gmail từ cơ sở dữ liệu
+            edt_tentk_tx.setText(kq.get(0));
+            edt_sdt_tx.setText(kq.get(1));
+            mkcu = kq.get(2);
+            ArrayList<String> kq2 = taiXeSQL.sp_select_taikhoan_taixe(soDienThoai,this);
+            edt_biensopt.setText(kq2.get(0));
+            edt_diemdg.setText(kq2.get(1));
+            edt_loaipt.setText(kq2.get(2));
         } else {
-            Toast.makeText(this, "Vui lòng nhập tên", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Không tìm thấy tài khoản", Toast.LENGTH_SHORT).show();
+        }
+    }
+    void init()
+    {
+        btn_edit=findViewById(R.id.btn_edit_tttkTX);
+        btn_doimk=findViewById(R.id.btn_doimk_tttkTX);
+        btnBack=findViewById(R.id.btn_back_hosotx);
+        edt_tentk_tx=findViewById(R.id.Ten);
+        edt_sdt_tx=findViewById(R.id.sdt);
+        edt_biensopt=findViewById(R.id.biensophuongtien);
+        edt_diemdg=findViewById(R.id.diemdanhgia);
+        edt_loaipt=findViewById(R.id.loaiphuongtien);
+        edt_mkcu=findViewById(R.id.mkcu_hscttx);
+        edt_mkmoi=findViewById(R.id.mkmoi_hscttx);
+
+    }
+    private void updatetttk() {
+        String ten = edt_tentk_tx.getText().toString();
+        String sdt = edt_sdt_tx.getText().toString();
+        taiKhoanSQL.updatetttk(sdt,ten,this);
+        finish();
+    }
+    private void doimk()
+    {
+        if(!DinhDang.isDinhDangMatKhau(edt_mkmoi.getText().toString()))
+        {
+            edt_mkmoi.setError("Sai dinh dang mat khau");
+        }
+        else{
+            if(mkcu.compareTo(edt_mkcu.getText().toString())==0)
+            {
+                taiKhoanSQL.sp_update_mkTaiKhoan(soDienThoai,edt_mkcu.getText().toString(),this);
+                finish();
+            }
+            else {
+                Toast.makeText(this,"Mat khau cu khong dung",Toast.LENGTH_SHORT).show();
+            }
+
         }
     }
 
-    private void updatePhone() {
-        String phone = edtPhone.getText().toString().trim();
-        if (!phone.isEmpty()) {
-            // Thực hiện cập nhật số điện thoại
-            // Ví dụ: taiXeSQL.updatePhone(phone, this);
-            Toast.makeText(this, "Số điện thoại đã được cập nhật", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Vui lòng nhập số điện thoại", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void updateChucVu() {
-        String chucVu = edtChucVu.getText().toString().trim();
-        if (!chucVu.isEmpty()) {
-            // Thực hiện cập nhật chức vụ
-            // Ví dụ: taiXeSQL.updateChucVu(chucVu, this);
-            Toast.makeText(this, "Chức vụ đã được cập nhật", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Vui lòng nhập chức vụ", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void updateMaPhuongTien() {
-        String maPhuongTien = edtMaPhuongTien.getText().toString().trim();
-        if (!maPhuongTien.isEmpty()) {
-            // Thực hiện cập nhật mã phương tiện
-            // Ví dụ: taiXeSQL.updateMaPhuongTien(maPhuongTien, this);
-            Toast.makeText(this, "Mã phương tiện đã được cập nhật", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Vui lòng nhập mã phương tiện", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void updateBienSoPhuongTien() {
-        String bienSoPhuongTien = edtBienSoPhuongTien.getText().toString().trim();
-        if (!bienSoPhuongTien.isEmpty()) {
-            // Thực hiện cập nhật biển số phương tiện
-            // Ví dụ: taiXeSQL.updateBienSoPhuongTien(bienSoPhuongTien, this);
-            Toast.makeText(this, "Biển số phương tiện đã được cập nhật", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Vui lòng nhập biển số phương tiện", Toast.LENGTH_SHORT).show();
-        }
-    }
 }

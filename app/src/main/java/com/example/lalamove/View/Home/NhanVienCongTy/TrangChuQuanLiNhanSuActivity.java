@@ -23,5 +23,10 @@ public class TrangChuQuanLiNhanSuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        LinearLayout lg_out = findViewById(R.id.ln_log_out);
+        lg_out.setOnClickListener(c->{
+            finish();
+        });
+
     }
 }

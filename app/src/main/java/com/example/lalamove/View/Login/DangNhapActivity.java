@@ -18,6 +18,7 @@ import com.example.lalamove.R;
 import com.example.lalamove.View.Home.KhachHang.DangKyKhachHangActivity;
 import com.example.lalamove.View.Home.TaiXe.DangKyTaiXeActivity;
 import com.example.lalamove.View.model.TableKhachHang.QuerySql_KhachHang;
+import com.example.lalamove.View.model.TableTaiKhoan.TaiKhoanSQL;
 import com.example.lalamove.View.model.XacThucvaDinhDang.DinhDang;
 
 public class DangNhapActivity extends AppCompatActivity {
@@ -28,6 +29,7 @@ public class DangNhapActivity extends AppCompatActivity {
     private Button btn_DangNhap;
     private boolean isPasswordVisible = false;
     private QuerySql_KhachHang querySql;
+    private TaiKhoanSQL tksql;
     private SharedPreferences sharedPreferences,sharedPreferences2;
     private SharedPreferences.Editor editor;
 
@@ -57,6 +59,7 @@ public class DangNhapActivity extends AppCompatActivity {
                    }
                     querySql = new QuerySql_KhachHang();
                     querySql.sp_search_taikhoan(soDienThoai, matkhau, DangNhapActivity.this);
+
                     editor.putString("sodienthoai",soDienThoai);
                     editor.apply();
                 }
