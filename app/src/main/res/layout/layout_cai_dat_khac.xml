@@ -1,6 +1,277 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/ic_back" />
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:text="Cài đặt khác"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/titleTextView"
+        android:layout_marginTop="16dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/accountSectionTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tài khoản"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:id="@+id/passwordSettingLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/accountSectionTitle"
+
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/tv_td1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Thiết lập mật khẩu đăng nhập"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_td1"
+                    android:text="Bạn hãy bấm vào đây để thay đổi mật khẩu"
+                    android:textSize="12sp"
+                    android:textColor="#888888" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/icon_right_30" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/upgradeAccountLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/passwordSettingLayout"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/td_21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nâng cấp lên Doanh nghiệp"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/td_21"
+                    android:text="Quyền truy cập vào báo cáo hàng tháng, bảng phân tích, dùng chung tài khoản thanh toán và nhiều tính năng khác."
+                    android:textSize="12sp"
+                    android:textColor="#888888" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/icon_right_30" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/setupSectionTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/upgradeAccountLayout"
+                android:layout_marginTop="24dp"
+                android:text="Thiết lập"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:id="@+id/eInvoiceLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/setupSectionTitle"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/td_31"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nhận hóa đơn điện tử"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/td_31"
+                    android:text="laiphuoctruong2004@gmail.com"
+                    android:textSize="12sp"
+                    android:textColor="#888888" />
+
+                <Switch
+                    android:id="@+id/eInvoiceSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/deliveryVerificationLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/eInvoiceLayout"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/td_41"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kiểm chứng đơn giao hàng"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/td_41"
+                    android:text="Nhận chữ ký hoặc hình ảnh kiểm chứng khi giao hàng"
+                    android:textSize="12sp"
+                    android:textColor="#888888" />
+
+                <Switch
+                    android:id="@+id/deliveryVerificationSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/NgonNgu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/deliveryVerificationLayout"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/td_51"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ngôn ngữ"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/td_51"
+                    android:text="Tiếng Việt"
+                    android:textSize="12sp"
+                    android:textColor="#888888" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/icon_right_30" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/ThongBao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/NgonNgu"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/td_61"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Thông báo"
+                    android:textSize="16sp" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/icon_right_30" />
+            </RelativeLayout>
+
+
+            <!-- Add more settings items here -->
+
+            <TextView
+                android:id="@+id/versionInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ThongBao"
+                android:layout_marginTop="24dp"
+                android:text="Về Lalamove v 111.6.1"
+                android:textSize="14sp"
+                android:textColor="#888888" />
+            <RelativeLayout
+                android:id="@+id/BaoMat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/versionInfo"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/td_71"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BẢO MẬT"
+                    android:textSize="16sp" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/icon_right_30" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/NiemYet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/BaoMat"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/td_81"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bảng Giá Niêm Yết"
+                    android:textSize="16sp" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/icon_right_30" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

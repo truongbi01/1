@@ -60,13 +60,10 @@
                     android:gravity="center"
                     android:background="@drawable/banner_background">
 
-                    <ImageView
-                        android:id="@+id/banner_image"
-                        android:layout_width="wrap_content"
-                        android:layout_height="150dp"
-                        android:background="@drawable/background_banner"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/background" />
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/banner_viewpager"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp" />
 
                     <TextView
                         android:id="@+id/banner_text"

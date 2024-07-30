@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.lalamove.DTO.KhungGioCam;
 import com.example.lalamove.ListLoaiXe.PhuongTien;
@@ -36,6 +38,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Home_KhachHang extends AppCompatActivity {
@@ -51,13 +54,16 @@ public class Home_KhachHang extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     private int tongTien;
-
+    private ViewPager2 bannerViewPager;
+    private BannerAdapter bannerAdapter;
+    private Handler handler = new Handler();
+    private int scrollInterval = 3500; // 3 seconds
     @SuppressLint("InflateParams")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_trangchu_khachhang);
-
+        setupBanner();
         // AnhXa
         AnhXa();
         //Khai báo sharedPreferences
@@ -187,6 +193,52 @@ public class Home_KhachHang extends AppCompatActivity {
             }
         });
     }
+    private void setupBanner() {
+        bannerViewPager = findViewById(R.id.banner_viewpager);
+        List<Integer> bannerImages = Arrays.asList(
+                R.drawable.banner1,
+                R.drawable.banner2,
+                R.drawable.banner3
+                // Add more banner images as needed
+        );
+
+        bannerAdapter = new BannerAdapter(bannerImages);
+        bannerViewPager.setAdapter(bannerAdapter);
+
+        startAutoScroll();
+    }
+    private void startAutoScroll() {
+        handler.postDelayed(autoScrollRunnable, scrollInterval);
+    }
+
+    private void stopAutoScroll() {
+        handler.removeCallbacks(autoScrollRunnable);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        stopAutoScroll();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        startAutoScroll();
+    }
+    private Runnable autoScrollRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (bannerViewPager.getAdapter() != null && bannerViewPager.getAdapter().getItemCount() > 1) {
+                int nextItem = bannerViewPager.getCurrentItem() + 1;
+                if (nextItem >= bannerViewPager.getAdapter().getItemCount()) {
+                    nextItem = 0;
+                }
+                bannerViewPager.setCurrentItem(nextItem, true);
+            }
+            handler.postDelayed(this, scrollInterval);
+        }
+    };
     private List<KhungGioCam> getKhungGioCamList() {
         KhungGioCam_QuerySql khungGioCamQuerySql = new KhungGioCam_QuerySql(this);
         return khungGioCamQuerySql.getKhungGioCamList();
@@ -292,4 +344,5 @@ public class Home_KhachHang extends AppCompatActivity {
         Intent i = new Intent(context, lop);
         startActivity(i);
     }
+
 }

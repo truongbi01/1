@@ -128,5 +128,27 @@
                 android:textSize="14sp"
                 android:layout_marginTop="8dp" />
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ln_BaoCaoDoanhThu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_order" /> <!-- Replace with your icon -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Báo cáo doanh thu tháng"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
     </GridLayout>
 </RelativeLayout>
