@@ -98,7 +98,10 @@
         </activity>
         <activity android:name=".View.Home.TaiXe.TaiXeYeuThichActivity" android:exported="false">
         </activity>
-        <activity android:name=".View.Home.NhanVienCongTy.QuanLyTaiKhoan.QuanLiTaiKhoanActivity"></activity>
+        <activity android:name=".View.Home.NhanVienCongTy.QuanLyTaiKhoan.QuanLiTaiKhoanActivity"
+            android:exported="true">
+
+        </activity>
         <activity android:name=".View.Home.KhachHang.ThongTinTK_KhachHang" />
         <activity android:name=".View.Home.TaiXe.ThongTinTK_TaiXe" />
         <activity android:name=".View.Home.NhanVienCongTy.BaoCaoDoanhThu.BaoCaoDoanhThuActivity" android:exported="true">
